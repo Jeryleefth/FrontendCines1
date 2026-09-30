@@ -1,6 +1,5 @@
-# CineMatch — Frontend (Entrega 1)
-
-React + Vite + React Router. Trabaja con datos simulados hasta que la API de Spring Boot esté lista.
+# CineMatch — Frontend 
+React + Vite + React Router.
 
 ## Ejecutar
 
@@ -19,8 +18,8 @@ src/
 ├─ main.jsx                  Punto de entrada
 ├─ App.jsx                   Tabla de rutas (React Router)
 ├─ configuracion/            Datos de configuración (enlaces de la barra)
-├─ estilos/                  variables.css (paleta del proyecto Swing) y global.css
-├─ compartido/               Lo que usarán AMBAS apps en la Entrega 2
+├─ estilos/                  variables.css y global.css
+├─ compartido/               
 │  ├─ componentes/           Navbar, Layout, Banner, Boton
 │  └─ utilidades/            formato.js (precios en COP, fechas)
 ├─ modulos/
@@ -35,12 +34,9 @@ src/
 │  ├─ tipos.js               Contrato de datos (JSDoc) para el equipo de backend
 │  ├─ clienteHttp.js         fetch centralizado
 │  ├─ mock/                  Implementación con JSON
-│  └─ api/                   Implementación contra Spring Boot (misma forma)
+│  └─ api/                   Implementación contra Spring Boot
 └─ mocks/                    cines.json, peliculas.json, funciones.json
 ```
-
-Regla de oro: `modulos/publico` y `modulos/admin` nunca se importan entre sí; ambos pueden
-importar de `compartido/` y `servicios/`. Así, en la Entrega 2 cada módulo se convierte en una app.
 
 ## Pasar a la API real
 
