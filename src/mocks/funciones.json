@@ -1,0 +1,28 @@
+[
+  { "id": "fn-1",  "peliculaId": "pel-1", "cineId": "cine-1", "salaId": "sala-1a", "tipoFuncion": "Doblada",     "formato": "2D",  "diasDesdeHoy": 0, "horaInicio": "19:00", "horaFin": "21:46", "precio": 16500 },
+  { "id": "fn-2",  "peliculaId": "pel-1", "cineId": "cine-2", "salaId": "sala-2a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 0, "horaInicio": "18:30", "horaFin": "21:16", "precio": 15500 },
+  { "id": "fn-3",  "peliculaId": "pel-1", "cineId": "cine-3", "salaId": "sala-3a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "17:00", "horaFin": "19:46", "precio": 14500 },
+  { "id": "fn-4",  "peliculaId": "pel-1", "cineId": "cine-3", "salaId": "sala-3b", "tipoFuncion": "Subtitulada", "formato": "VIP", "diasDesdeHoy": 1, "horaInicio": "20:30", "horaFin": "23:16", "precio": 26000 },
+
+  { "id": "fn-5",  "peliculaId": "pel-2", "cineId": "cine-1", "salaId": "sala-1a", "tipoFuncion": "Doblada",     "formato": "2D",  "diasDesdeHoy": 0, "horaInicio": "15:00", "horaFin": "16:36", "precio": 14500 },
+  { "id": "fn-6",  "peliculaId": "pel-2", "cineId": "cine-2", "salaId": "sala-2a", "tipoFuncion": "Doblada",     "formato": "2D",  "diasDesdeHoy": 0, "horaInicio": "16:00", "horaFin": "17:36", "precio": 13500 },
+  { "id": "fn-7",  "peliculaId": "pel-2", "cineId": "cine-3", "salaId": "sala-3a", "tipoFuncion": "Doblada",     "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "14:30", "horaFin": "16:06", "precio": 13000 },
+
+  { "id": "fn-8",  "peliculaId": "pel-3", "cineId": "cine-1", "salaId": "sala-1c", "tipoFuncion": "Subtitulada", "formato": "VIP", "diasDesdeHoy": 0, "horaInicio": "20:30", "horaFin": "22:38", "precio": 24500 },
+  { "id": "fn-9",  "peliculaId": "pel-3", "cineId": "cine-2", "salaId": "sala-2a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 0, "horaInicio": "21:00", "horaFin": "23:08", "precio": 16000 },
+  { "id": "fn-10", "peliculaId": "pel-3", "cineId": "cine-3", "salaId": "sala-3a", "tipoFuncion": "Doblada",     "formato": "2D",  "diasDesdeHoy": 0, "horaInicio": "19:45", "horaFin": "21:53", "precio": 15000 },
+  { "id": "fn-11", "peliculaId": "pel-3", "cineId": "cine-3", "salaId": "sala-3b", "tipoFuncion": "Subtitulada", "formato": "VIP", "diasDesdeHoy": 2, "horaInicio": "21:00", "horaFin": "23:08", "precio": 26000 },
+
+  { "id": "fn-12", "peliculaId": "pel-4", "cineId": "cine-1", "salaId": "sala-1b", "tipoFuncion": "Doblada",     "formato": "3D",  "diasDesdeHoy": 0, "horaInicio": "15:00", "horaFin": "16:34", "precio": 19000 },
+  { "id": "fn-13", "peliculaId": "pel-4", "cineId": "cine-2", "salaId": "sala-2a", "tipoFuncion": "Doblada",     "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "14:00", "horaFin": "15:34", "precio": 13500 },
+
+  { "id": "fn-14", "peliculaId": "pel-5", "cineId": "cine-1", "salaId": "sala-1a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "21:00", "horaFin": "22:40", "precio": 16500 },
+  { "id": "fn-15", "peliculaId": "pel-5", "cineId": "cine-3", "salaId": "sala-3a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "21:30", "horaFin": "23:10", "precio": 15000 },
+
+  { "id": "fn-16", "peliculaId": "pel-6", "cineId": "cine-1", "salaId": "sala-1b", "tipoFuncion": "Subtitulada", "formato": "3D",  "diasDesdeHoy": 2, "horaInicio": "19:00", "horaFin": "20:44", "precio": 20000 },
+  { "id": "fn-17", "peliculaId": "pel-6", "cineId": "cine-2", "salaId": "sala-2b", "tipoFuncion": "Subtitulada", "formato": "3D",  "diasDesdeHoy": 2, "horaInicio": "19:30", "horaFin": "21:14", "precio": 19500 },
+
+  { "id": "fn-18", "peliculaId": "pel-7", "cineId": "cine-1", "salaId": "sala-1a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "18:00", "horaFin": "20:00", "precio": 17000 },
+  { "id": "fn-19", "peliculaId": "pel-7", "cineId": "cine-2", "salaId": "sala-2a", "tipoFuncion": "Subtitulada", "formato": "2D",  "diasDesdeHoy": 1, "horaInicio": "19:00", "horaFin": "21:00", "precio": 16000 },
+  { "id": "fn-20", "peliculaId": "pel-7", "cineId": "cine-3", "salaId": "sala-3b", "tipoFuncion": "Doblada",     "formato": "VIP", "diasDesdeHoy": 2, "horaInicio": "20:00", "horaFin": "22:00", "precio": 25500 }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "pel-1",
+    "titulo": "Dune: Parte Dos",
+    "sinopsis": "Paul Atreides se une a los Fremen para vengar a su familia.",
+    "duracion": 166,
+    "genero": "Ciencia ficción",
+    "clasificacion": "PG-13",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-03-01",
+    "rutaImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLHs5ZqsSLcLaztDuNemahsJDHRQ6ANuXL919gchW8O8aTOuiCADDDg9Dy&s=10"
+  },
+  {
+    "id": "pel-2",
+    "titulo": "Intensamente 2",
+    "sinopsis": "Riley enfrenta nuevas emociones en la adolescencia.",
+    "duracion": 96,
+    "genero": "Animación",
+    "clasificacion": "G",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-06-14",
+    "rutaImagen": "https://lumiere-a.akamaihd.net/v1/images/1_intensamente_2_payoff_banner_pre_1_aa3d9114.png"
+  },
+  {
+    "id": "pel-3",
+    "titulo": "Deadpool & Wolverine",
+    "sinopsis": "El dúo más caótico del multiverso Marvel.",
+    "duracion": 128,
+    "genero": "Acción",
+    "clasificacion": "R",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-07-26",
+    "rutaImagen": "https://lumiere-a.akamaihd.net/v1/images/tidalwave_payoff_poster_las_0a47c6a2.jpeg"
+  },
+  {
+    "id": "pel-4",
+    "titulo": "Kung Fu Panda 4",
+    "sinopsis": "Po debe entrenar a un sucesor como Guerrero Dragón.",
+    "duracion": 94,
+    "genero": "Animación",
+    "clasificacion": "PG",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-03-08",
+    "rutaImagen": "https://m.media-amazon.com/images/M/MV5BNmYwOGM5Y2MtYmU5NS00YjdlLWJjMDctYmYyZWUyNjI0ODNmXkEyXkFqcGc@._V1_.jpg"
+  },
+  {
+    "id": "pel-5",
+    "titulo": "Un Lugar en Silencio: Día Uno",
+    "sinopsis": "El origen de la invasión alienígena en Nueva York.",
+    "duracion": 100,
+    "genero": "Terror",
+    "clasificacion": "PG-13",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-06-28",
+    "rutaImagen": "https://m.media-amazon.com/images/M/MV5BZDExZjJkNWUtMWFkNC00MDZiLThkNTEtMWVmYmQ3OGU3ZmM5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    "id": "pel-6",
+    "titulo": "Beetlejuice Beetlejuice",
+    "sinopsis": "El fantasma más travieso regresa con más caos.",
+    "duracion": 104,
+    "genero": "Comedia",
+    "clasificacion": "PG-13",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-09-06",
+    "rutaImagen": "https://i.pinimg.com/736x/a8/fb/e6/a8fbe6c5c8afb995c11c03095296bac9.jpg"
+  },
+  {
+    "id": "pel-7",
+    "titulo": "Venom: El Último Baile",
+    "sinopsis": "Eddie y Venom enfrentan su mayor amenaza.",
+    "duracion": 120,
+    "genero": "Acción",
+    "clasificacion": "PG-13",
+    "idioma": "Inglés",
+    "fechaEstreno": "2024-10-25",
+    "rutaImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfGXnOCeSiW2Sx6D6XZ8qixs3b5YQdN8T_zfE9ldYmLstJsAA1wD9BKgo&s=10"
+  }
+]

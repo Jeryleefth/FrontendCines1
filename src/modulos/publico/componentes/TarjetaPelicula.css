@@ -1,0 +1,76 @@
+/* Medidas de TarjetaPelicula.java: ANCHO 190, ALTO_IMAGEN 240, ALTO_TITULO 55, RADIO 18 */
+.tarjeta-pelicula {
+  position: relative;
+  width: 190px;
+}
+
+.tarjeta-pelicula__abrir {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radio-tarjeta);
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 18%);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.tarjeta-pelicula__abrir:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 25%);
+}
+
+.tarjeta-pelicula__imagen {
+  display: block;
+  height: 240px;
+  background: var(--imagen-vacia);
+}
+
+.tarjeta-pelicula__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta-pelicula__titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  padding: 0 10px;
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.15s;
+}
+
+.tarjeta-pelicula__abrir:hover .tarjeta-pelicula__titulo,
+.tarjeta-pelicula__abrir:focus-visible .tarjeta-pelicula__titulo {
+  background: var(--rojo-oscuro);
+}
+
+/* Botón "i" en la esquina superior derecha */
+.tarjeta-pelicula__info {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 90%);
+  color: var(--rojo-principal);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.tarjeta-pelicula__info:hover {
+  background: var(--blanco);
+}

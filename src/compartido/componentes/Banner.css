@@ -1,0 +1,91 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px var(--espacio-medio) 60px;
+  text-align: center;
+  color: var(--blanco);
+  background: linear-gradient(180deg, #8a1512 0%, #b62220 100%);
+}
+
+.banner--con-imagen {
+  width: 100%;
+  aspect-ratio: 1920 / 200;
+  min-height: 140px;
+  max-height: 320px;
+}
+
+.banner__imagen {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner--con-imagen.banner--con-texto::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(30 5 5 / 55%) 0%, rgb(30 5 5 / 75%) 100%);
+}
+
+.banner:not(.banner--con-imagen)::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -15%;
+  right: -15%;
+  bottom: -75%;
+  height: 100%;
+  border-radius: 50%;
+  background: #590b0a;
+}
+
+.banner__titulo {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(26px, 5vw, 48px);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgb(0 0 0 / 30%);
+}
+
+.banner__subtitulo {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-size: clamp(18px, 3.2vw, 30px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dorado);
+}
+
+.banner__palomita {
+  position: absolute;
+  z-index: -1;
+  font-size: 34px;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 30%));
+}
+
+.banner__palomita--1 { top: 14%; left: 5%;  transform: rotate(-12deg); }
+.banner__palomita--2 { top: 48%; left: 15%; transform: rotate(18deg); font-size: 28px; }
+.banner__palomita--3 { top: 20%; right: 8%; transform: rotate(14deg); }
+.banner__palomita--4 { top: 52%; right: 5%; transform: rotate(-20deg); font-size: 30px; }
+
+
+@media (max-width: 720px) {
+  .banner__palomita {
+    display: none;
+  }
+}

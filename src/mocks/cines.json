@@ -1,0 +1,36 @@
+[
+  {
+    "id": "cine-1",
+    "cadena": "Cinemark",
+    "nombre": "Cinemark Multicentro",
+    "direccion": "C.C. Multicentro",
+    "ciudad": "Ibagué",
+    "salas": [
+      { "id": "sala-1a", "nombre": "Sala 1", "capacidad": 20, "tipo": "2D" },
+      { "id": "sala-1b", "nombre": "Sala 3D", "capacidad": 18, "tipo": "3D" },
+      { "id": "sala-1c", "nombre": "Sala VIP", "capacidad": 12, "tipo": "VIP" }
+    ]
+  },
+  {
+    "id": "cine-2",
+    "cadena": "Cine Colombia",
+    "nombre": "Cine Colombia La Estación",
+    "direccion": "C.C. La Estación",
+    "ciudad": "Ibagué",
+    "salas": [
+      { "id": "sala-2a", "nombre": "Sala 1", "capacidad": 22, "tipo": "2D" },
+      { "id": "sala-2b", "nombre": "Sala 3D", "capacidad": 16, "tipo": "3D" }
+    ]
+  },
+  {
+    "id": "cine-3",
+    "cadena": "Royal Films",
+    "nombre": "Royal Films Acqua",
+    "direccion": "C.C. Acqua",
+    "ciudad": "Ibagué",
+    "salas": [
+      { "id": "sala-3a", "nombre": "Sala 1", "capacidad": 20, "tipo": "2D" },
+      { "id": "sala-3b", "nombre": "Sala VIP", "capacidad": 14, "tipo": "VIP" }
+    ]
+  }
+]

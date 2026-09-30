@@ -1,0 +1,27 @@
+.boton {
+  border: 0;
+  border-radius: var(--radio-boton);
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.15s;
+}
+
+.boton--principal {
+  background: var(--rojo-principal);
+  color: var(--blanco);
+}
+
+.boton--principal:hover {
+  background: var(--rojo-oscuro);
+}
+
+.boton--secundario {
+  background: var(--crema-fondo);
+  color: var(--rojo-principal);
+  box-shadow: inset 0 0 0 1px var(--crema-borde);
+}
+
+.boton--secundario:hover {
+  background: var(--crema-oscuro);
+}

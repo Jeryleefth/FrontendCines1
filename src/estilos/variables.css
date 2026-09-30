@@ -1,0 +1,21 @@
+:root {
+  --rojo-principal: #8b1e2b;   /* ROJO_PRINCIPAL  (139, 30, 43)   */
+  --rojo-oscuro: #5a0f19;      /* ROJO_OSCURO     (90, 15, 25)    */
+  --crema-fondo: #f5f0e6;      /* CREMA_FONDO     (245, 240, 230) */
+  --crema-oscuro: #e6e0d2;     /* hover del botón secundario      */
+  --crema-borde: #e1dacd;
+  --blanco: #ffffff;
+  --gris-texto: #5a5a5a;       /* GRIS_TEXTO      (90, 90, 90)    */
+  --gris-placeholder: #a0a0a0; /* GRIS_PLACEHOLDER                */
+  --imagen-vacia: #d2cdc3;
+  --dorado: #d2b07e;           /* color del texto "CINEMARK" del banner */
+
+  --fuente-base: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --fuente-titulo: 'Poppins', var(--fuente-base);
+
+  --espacio-chico: 8px;        /* PADDING_CHICO  */
+  --espacio-medio: 20px;       /* PADDING_MEDIO  */
+  --espacio-grande: 40px;      /* PADDING_GRANDE */
+  --radio-tarjeta: 18px;
+  --radio-boton: 12px;
+}
