@@ -1,6 +1,6 @@
 // Simula lo que hace una API real: tarda un poco y devuelve una COPIA de los
 // datos (así ningún componente puede modificar por error el JSON original).
-export function simularLatencia(valor, milisegundos = 250) {
+export function simularLatencia(valor, milisegundos = 0) {
   return new Promise((resolver) => {
     setTimeout(() => resolver(structuredClone(valor)), milisegundos);
   });

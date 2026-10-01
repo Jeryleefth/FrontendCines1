@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import Banner from '../../../compartido/componentes/Banner';
 import Boton from '../../../compartido/componentes/Boton';
+import Cargando from '../../../compartido/componentes/Cargando';
+import FormularioPerfil from '../../../compartido/componentes/FormularioPerfil';
 import FormularioPelicula from '../componentes/FormularioPelicula';
 import TablaPeliculas from '../componentes/TablaPeliculas';
 import FormularioCine from '../componentes/FormularioCine';
@@ -8,15 +10,18 @@ import TablaCines from '../componentes/TablaCines';
 import FormularioFuncion from '../componentes/FormularioFuncion';
 import TablaFunciones from '../componentes/TablaFunciones';
 import { peliculaServicio, cineServicio, funcionServicio } from '../../../servicios';
+import { useAuth } from '../../autenticacion/contexto/AuthContext';
 import './PanelAdmin.css';
 
 const PESTANAS = [
   { id: 'peliculas', texto: 'Películas' },
   { id: 'cines', texto: 'Cines' },
   { id: 'funciones', texto: 'Funciones' },
+  { id: 'perfil', texto: 'Mi perfil' },
 ];
 
 export default function PanelAdmin() {
+  const { sesion, actualizarPerfil } = useAuth();
   const [pestanaActiva, setPestanaActiva] = useState('peliculas');
 
   // --- Películas ---
@@ -189,7 +194,7 @@ export default function PanelAdmin() {
               />
             )}
 
-            {cargandoPeliculas && <p className="mensaje-estado">Cargando películas…</p>}
+            {cargandoPeliculas && <Cargando texto="Cargando películas…" />}
             {errorPeliculas && <p className="mensaje-estado mensaje-estado--error">{errorPeliculas}</p>}
             {!cargandoPeliculas && !errorPeliculas && (
               <TablaPeliculas
@@ -217,7 +222,7 @@ export default function PanelAdmin() {
               />
             )}
 
-            {cargandoCines && <p className="mensaje-estado">Cargando cines…</p>}
+            {cargandoCines && <Cargando texto="Cargando cines…" />}
             {errorCines && <p className="mensaje-estado mensaje-estado--error">{errorCines}</p>}
             {!cargandoCines && !errorCines && (
               <TablaCines cines={cines} onEditar={setFormularioCine} onEliminar={eliminarCine} />
@@ -256,7 +261,7 @@ export default function PanelAdmin() {
               />
             )}
 
-            {cargandoFunciones && <p className="mensaje-estado">Cargando funciones…</p>}
+            {cargandoFunciones && <Cargando texto="Cargando funciones…" />}
             {errorFunciones && <p className="mensaje-estado mensaje-estado--error">{errorFunciones}</p>}
             {!cargandoFunciones && !errorFunciones && (
               <TablaFunciones
@@ -266,6 +271,23 @@ export default function PanelAdmin() {
                 onEliminar={eliminarFuncion}
               />
             )}
+          </section>
+        )}
+
+        {/* El formulario en sí es el mismo componente que usa Mi perfil del
+            lado de clientes (FormularioPerfil) — ver ese archivo. Acá no
+            se le pasa `mostrarTelefono`: el administrador no tiene ese
+            campo. */}
+        {pestanaActiva === 'perfil' && (
+          <section>
+            <div className="panel-admin__encabezado">
+              <h2 className="panel-admin__titulo">Mi perfil</h2>
+            </div>
+            <FormularioPerfil
+              correo={sesion.correo}
+              nombreInicial={sesion.nombre}
+              onGuardar={actualizarPerfil}
+            />
           </section>
         )}
       </div>

@@ -1,0 +1,41 @@
+/* `.modal-fondo` también la usa DetallePeliculaModal.css (mismo nombre de
+   clase, mismas reglas) — cada archivo la define porque cada modal importa
+   solo su propio CSS; si se repite en varios componentes, React/Vite no
+   duplica nada raro, simplemente se vuelve a declarar la misma regla. */
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: var(--espacio-medio);
+  background: rgb(0 0 0 / 55%);
+}
+
+.confirmacion-modal {
+  width: min(380px, 100%);
+  padding: var(--espacio-grande) var(--espacio-medio);
+  background: var(--crema-fondo);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 40%);
+  text-align: center;
+}
+
+.confirmacion-modal__titulo {
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: var(--rojo-principal);
+}
+
+.confirmacion-modal__mensaje {
+  margin: 0 0 var(--espacio-medio);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--gris-texto);
+}
+
+.confirmacion-modal__pie {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Banner from '../../../compartido/componentes/Banner';
+import Cargando from '../../../compartido/componentes/Cargando';
 import FiltrosCartelera from '../componentes/FiltrosCartelera';
 import TarjetaPelicula from '../componentes/TarjetaPelicula';
 import DetallePeliculaModal from '../componentes/DetallePeliculaModal';
@@ -119,7 +120,7 @@ export default function Cartelera() {
           />
         )}
 
-        {cargando && <p className="mensaje-estado">Cargando cartelera…</p>}
+        {cargando && <Cargando texto="Cargando cartelera…" />}
         {error && <p className="mensaje-estado mensaje-estado--error">{error}</p>}
         {!cargando && !error && peliculas.length === 0 && (
           <p className="mensaje-estado">No hay películas disponibles.</p>

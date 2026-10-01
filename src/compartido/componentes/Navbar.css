@@ -93,6 +93,16 @@
   background: var(--crema-oscuro);
 }
 
+/* El botón "Cerrar sesión" reutiliza el aspecto de .navbar__enlace, pero es
+   un <button>, no un <a>: se le quita el estilo nativo (borde, fondo,
+   fuente) que el navegador le pone a los botones para que no desentone. */
+.navbar__salir {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
 @media (max-width: 560px) {
   .navbar__lema {
     display: none;

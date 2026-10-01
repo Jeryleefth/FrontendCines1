@@ -19,10 +19,13 @@ export default function Asiento({ id, ocupado, seleccionado, onClick }) {
     <button
       type="button"
       className={clases.join(' ')}
-      disabled={ocupado}
+      // Sin `onClick` (mapa de solo lectura, por ejemplo después de
+      // confirmar una reserva), el asiento también queda deshabilitado —
+      // no solo "sin reacción al clic", sino visualmente bloqueado.
+      disabled={ocupado || !onClick}
       aria-pressed={seleccionado}
       aria-label={`Asiento ${id}, ${descripcion}`}
-      onClick={() => onClick(id)}
+      onClick={() => onClick?.(id)}
     >
       {id}
     </button>

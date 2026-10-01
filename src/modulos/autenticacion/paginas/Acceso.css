@@ -1,0 +1,222 @@
+/* La foto cubre TODA la pantalla (igual que un banner, pero de alto
+   completo) y la tarjeta del formulario flota centrada encima, con su
+   propio fondo blanco opaco y una sombra marcada — no hay paneles
+   separados como en la versión anterior.
+
+   El degradado rojo semitransparente va SIEMPRE encima de la foto (mismo
+   truco que usa Banner.jsx con .banner--imagen-difusa): sin él, una foto
+   clara dejaría la tarjeta blanca casi invisible sobre un fondo parecido.
+   Si `fondoAcceso.jpg` no existe todavía, esta regla no pinta nada y se ve
+   el color sólido de `background-color` — nada se rompe mientras no se
+   agregue la imagen. */
+.acceso-pagina {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 66px);
+  padding: var(--espacio-grande) var(--espacio-medio);
+  background-image: linear-gradient(180deg, rgb(90 15 25 / 55%) 0%, rgb(90 15 25 / 70%) 100%),
+    url('/banners/fondoAcceso.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: #8a1512;
+}
+
+.acceso-pagina__formulario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acceso-tarjeta {
+  width: min(400px, 100%);
+  padding: var(--espacio-grande) var(--espacio-medio);
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  /* Sombra más marcada que una tarjeta común (compara con .mis-reservas__tarjeta):
+     es justo lo que hace que se sienta "flotando" sobre la foto, en vez de
+     ser una sección más de la página. */
+  box-shadow: 0 24px 60px rgb(0 0 0 / 35%);
+  text-align: center;
+}
+
+.acceso-tarjeta__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--espacio-chico);
+  border-radius: 14px;
+  background: var(--crema-fondo);
+  color: var(--rojo-principal);
+}
+
+.acceso-tarjeta__icono svg {
+  width: 26px;
+  height: 26px;
+}
+
+.acceso-tarjeta__titulo {
+  margin: 0 0 6px;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--rojo-principal);
+}
+
+.acceso-tarjeta__subtitulo {
+  margin: 0 0 var(--espacio-medio);
+  color: var(--gris-texto);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.acceso-tarjeta__pestanas {
+  display: flex;
+  gap: 4px;
+  margin-bottom: var(--espacio-medio);
+  padding: 4px;
+  background: var(--crema-fondo);
+  border-radius: var(--radio-boton);
+}
+
+.acceso-tarjeta__pestana {
+  flex: 1;
+  padding: 9px 0;
+  border: 0;
+  border-radius: calc(var(--radio-boton) - 4px);
+  background: transparent;
+  color: var(--gris-texto);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.acceso-tarjeta__pestana:hover {
+  color: var(--rojo-principal);
+}
+
+.acceso-tarjeta__pestana--activa,
+.acceso-tarjeta__pestana--activa:hover {
+  background: var(--blanco);
+  color: var(--rojo-principal);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+}
+
+.acceso-tarjeta__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+/* Cada campo es un <label> que envuelve el icono y el <input>: así el
+   icono también activa el campo al hacer clic, sin JavaScript aparte. */
+.acceso-tarjeta__campo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-boton);
+  background: var(--crema-fondo);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.acceso-tarjeta__campo:focus-within {
+  border-color: var(--rojo-principal);
+  box-shadow: 0 0 0 3px rgb(139 30 43 / 12%);
+}
+
+.acceso-tarjeta__campo-icono {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--gris-placeholder);
+}
+
+.acceso-tarjeta__campo input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 0;
+  border: 0;
+  background: transparent;
+  color: var(--gris-texto);
+  font: inherit;
+}
+
+.acceso-tarjeta__campo input:focus {
+  outline: none;
+}
+
+.acceso-tarjeta__campo input::placeholder {
+  color: var(--gris-placeholder);
+}
+
+.acceso-tarjeta__ojo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--gris-placeholder);
+  cursor: pointer;
+}
+
+.acceso-tarjeta__ojo:hover {
+  color: var(--rojo-principal);
+}
+
+.acceso-tarjeta__ojo svg {
+  width: 19px;
+  height: 19px;
+}
+
+.acceso-tarjeta__enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 14px 0;
+  border: 0;
+  border-radius: var(--radio-boton);
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  font: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.acceso-tarjeta__enviar:hover:not(:disabled) {
+  background: var(--rojo-oscuro);
+}
+
+.acceso-tarjeta__enviar:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.acceso-tarjeta__enviar svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* En celular, la tarjeta pierde el padding lateral extra y se acerca más
+   a los bordes — la foto de fondo ya se ve completa a cualquier tamaño
+   porque background-size: cover no depende del viewport. */
+@media (max-width: 480px) {
+  .acceso-pagina {
+    padding: var(--espacio-medio);
+  }
+}

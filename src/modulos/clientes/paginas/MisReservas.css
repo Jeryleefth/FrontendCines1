@@ -1,0 +1,50 @@
+.mis-reservas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-chico);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mis-reservas__tarjeta {
+  padding: var(--espacio-medio);
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.mis-reservas__encabezado {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.mis-reservas__encabezado h2 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--rojo-principal);
+}
+
+.mis-reservas__total {
+  flex-shrink: 0;
+  font-weight: 800;
+  color: var(--rojo-principal);
+}
+
+.mis-reservas__detalle {
+  margin: 2px 0;
+  color: var(--gris-texto);
+  font-size: 14px;
+}
+
+.mis-reservas__asientos {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--gris-texto);
+}

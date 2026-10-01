@@ -9,10 +9,10 @@ import './FormularioPelicula.css';
 const CLASIFICACIONES_COLOMBIA = [
   { valor: '', texto: 'Selecciona una clasificación' },
   { valor: 'T', texto: 'T — Todo público' },
-  { valor: '7', texto: '7 — Mayores de 7 años' },
-  { valor: '12', texto: '12 — Mayores de 12 años' },
-  { valor: '15', texto: '15 — Mayores de 15 años' },
-  { valor: '18', texto: '18 — Exclusivo para mayores de 18 años' },
+  { valor: '+7', texto: '7 — Mayores de 7 años' },
+  { valor: '+12', texto: '12 — Mayores de 12 años' },
+  { valor: '+15', texto: '15 — Mayores de 15 años' },
+  { valor: '+18', texto: '18 — Exclusivo para mayores de 18 años' },
 ];
 
 const VALORES_VACIOS = {

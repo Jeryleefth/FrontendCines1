@@ -1,0 +1,153 @@
+.perfil-tarjeta {
+  width: min(480px, 100%);
+  margin: 0 auto var(--espacio-grande);
+  padding: var(--espacio-medio);
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.perfil-tarjeta__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Una sola franja compacta por campo: el ícono viaja junto a la etiqueta
+   (arriba) y la entrada es apenas una línea debajo — no una etiqueta
+   seguida de una caja con borde completo, que ocupaba casi el doble de
+   alto. */
+.perfil-tarjeta__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.perfil-tarjeta__etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gris-texto);
+}
+
+.perfil-tarjeta__campo-icono {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--rojo-principal);
+}
+
+/* La "entrada" ya no es una caja: es el <input> mismo (o, cuando hace
+   falta compartir la franja con el botón del ojo, el <span> que lo
+   envuelve), con una sola línea inferior en vez de borde completo. */
+.perfil-tarjeta__entrada {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 6px 2px;
+  border: 0;
+  border-bottom: 2px solid var(--crema-borde);
+  background: transparent;
+  color: var(--gris-texto);
+  font: inherit;
+  transition: border-color 0.15s;
+}
+
+.perfil-tarjeta__entrada:focus,
+.perfil-tarjeta__entrada:focus-within {
+  outline: none;
+  border-color: var(--rojo-principal);
+}
+
+/* El campo de correo se ve apagado a propósito: la idea es que se note de
+   un vistazo que ese, a diferencia de los demás, no se puede tocar. */
+.perfil-tarjeta__entrada--deshabilitada {
+  color: var(--gris-placeholder);
+  cursor: not-allowed;
+}
+
+.perfil-tarjeta__entrada--con-boton input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+}
+
+.perfil-tarjeta__entrada--con-boton input:focus {
+  outline: none;
+}
+
+.perfil-tarjeta__entrada input::placeholder,
+.perfil-tarjeta__entrada::placeholder {
+  color: var(--gris-placeholder);
+  font-size: 13px;
+}
+
+.perfil-tarjeta__ojo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 0 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--gris-placeholder);
+  cursor: pointer;
+}
+
+.perfil-tarjeta__ojo:hover {
+  color: var(--rojo-principal);
+}
+
+.perfil-tarjeta__ojo svg {
+  width: 18px;
+  height: 18px;
+}
+
+.perfil-tarjeta__ayuda {
+  margin: 0;
+  font-size: 12px;
+  color: var(--gris-placeholder);
+}
+
+.perfil-tarjeta__separador {
+  margin: 4px 0;
+  border: 0;
+  border-top: 1px solid var(--crema-borde);
+}
+
+.perfil-tarjeta__exito {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #2f7a3d;
+}
+
+.perfil-tarjeta__enviar {
+  margin-top: 4px;
+  padding: 13px 0;
+  border: 0;
+  border-radius: var(--radio-boton);
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  font: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.perfil-tarjeta__enviar:hover:not(:disabled) {
+  background: var(--rojo-oscuro);
+}
+
+.perfil-tarjeta__enviar:disabled {
+  opacity: 0.7;
+  cursor: default;
+}

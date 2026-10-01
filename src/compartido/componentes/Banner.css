@@ -39,12 +39,21 @@
   transform: scale(1.08);
 }
 
-.banner--con-imagen.banner--con-texto::before {
+.banner--con-velo::before {
   content: '';
   position: absolute;
   z-index: -2;
   inset: 0;
   background: linear-gradient(180deg, rgb(30 5 5 / 55%) 0%, rgb(30 5 5 / 75%) 100%);
+}
+
+/* Cuando el título ya viene dibujado en la propia imagen (ver comentario
+   de Banner.jsx sobre MisReservas), el subtítulo dinámico se empuja hacia
+   el borde inferior del banner en vez de quedar centrado, para no caer
+   justo encima de ese título. */
+.banner--subtitulo-abajo {
+  justify-content: flex-end;
+  padding-bottom: 10px;
 }
 
 .banner:not(.banner--con-imagen)::after {

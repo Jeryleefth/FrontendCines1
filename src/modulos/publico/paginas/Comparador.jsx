@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Banner from '../../../compartido/componentes/Banner';
 import BotonPill from '../../../compartido/componentes/BotonPill';
+import Cargando from '../../../compartido/componentes/Cargando';
 import TarjetaCine from '../componentes/TarjetaCine';
 import TarjetaFuncion from '../componentes/TarjetaFuncion';
 import { funcionServicio, peliculaServicio } from '../../../servicios';
@@ -74,7 +75,7 @@ export default function Comparador() {
           </p>
         )}
 
-        {peliculaId && cargando && <p className="mensaje-estado">Buscando funciones…</p>}
+        {peliculaId && cargando && <Cargando texto="Buscando funciones…" />}
         {peliculaId && error && <p className="mensaje-estado mensaje-estado--error">{error}</p>}
 
         {peliculaId && !cargando && !error && comparacion.length === 0 && (
