@@ -1,0 +1,12 @@
+.comparador__pie {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--espacio-grande);
+}
+
+/* Variante propia de este botón: más ancho que el tamaño por defecto de
+   .boton-pill, para que se note como el cierre de la pantalla. El resto
+   (color, bordes, hover) ya lo trae la clase base. */
+.comparador__volver {
+  min-width: 220px;
+}

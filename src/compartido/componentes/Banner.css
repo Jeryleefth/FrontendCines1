@@ -30,6 +30,15 @@
   object-fit: cover;
 }
 
+/* Para imágenes "reaprovechadas" como fondo (ej. el póster de una película,
+   que no fue diseñado como banner): se desenfoca y oscurece un poco para
+   que funcione como telón de fondo y el título se lea bien encima.
+   El scale(1.08) evita que se note el borde nítido que deja el blur. */
+.banner--imagen-difusa .banner__imagen {
+  filter: blur(8px) brightness(0.75);
+  transform: scale(1.08);
+}
+
 .banner--con-imagen.banner--con-texto::before {
   content: '';
   position: absolute;

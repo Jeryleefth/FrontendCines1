@@ -2,7 +2,7 @@ import cines from '../../mocks/cines.json';
 import funciones from '../../mocks/funciones.json';
 import { simularLatencia, fechaDesdeHoy } from './utilidades';
 
-// Convierte una fila "cruda" del JSON en una Funcion con la forma del contrato
+// Convierte una fila del JSON en una Funcion con la forma del contrato
 // (ver ../tipos.js): calcula la fecha real y adjunta los datos del cine y la sala.
 function armarFuncion(fila) {
   const cine = cines.find((c) => c.id === fila.cineId);
@@ -25,6 +25,16 @@ const porFechaYHora = (a, b) =>
   `${a.fecha} ${a.horaInicio}`.localeCompare(`${b.fecha} ${b.horaInicio}`);
 
 export const funcionServicioMock = {
+  /**
+   * Todas las funciones programadas, de todas las películas y cines.
+   * La usan los filtros de la cartelera
+   * @returns {Promise<import('../tipos').Funcion[]>}
+   */
+  async listarTodas() {
+    const resultado = funciones.map(armarFuncion).sort(porFechaYHora);
+    return simularLatencia(resultado);
+  },
+
   /** @returns {Promise<import('../tipos').Funcion[]>} */
   async listarPorPelicula(peliculaId) {
     const resultado = funciones

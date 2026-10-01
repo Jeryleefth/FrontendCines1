@@ -1,0 +1,183 @@
+.tarjeta-cine {
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  overflow: hidden;
+  margin-bottom: var(--espacio-medio);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+}
+
+/* ---------- Encabezado ---------- */
+
+.tarjeta-cine__cabecera {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 16px var(--espacio-medio);
+  background: linear-gradient(120deg, var(--rojo-oscuro) 0%, var(--rojo-principal) 70%);
+  color: var(--blanco);
+}
+
+.tarjeta-cine__miniatura {
+  flex-shrink: 0;
+  width: 56px;
+  height: 78px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 35%);
+}
+
+.tarjeta-cine__info {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.tarjeta-cine__cadena {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dorado);
+}
+
+.tarjeta-cine__nombre {
+  margin: 0 0 8px;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--blanco);
+}
+
+.tarjeta-cine__insignias {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.tarjeta-cine__insignia {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(255 255 255 / 92%);
+  white-space: nowrap;
+}
+
+.tarjeta-cine__insignia--borde {
+  border: 1.5px solid rgb(255 255 255 / 55%);
+}
+
+.tarjeta-cine__insignia--texto {
+  background: rgb(255 255 255 / 14%);
+}
+
+.tarjeta-cine__insignia-icono {
+  width: 13px;
+  height: 13px;
+}
+
+/* ---------- Precio ---------- */
+
+.tarjeta-cine__precio {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radio-boton);
+  background: rgb(0 0 0 / 18%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 15%);
+}
+
+.tarjeta-cine__precio-icono {
+  width: 22px;
+  height: 22px;
+  color: var(--dorado);
+  flex-shrink: 0;
+}
+
+.tarjeta-cine__precio-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.25;
+}
+
+.tarjeta-cine__etiqueta {
+  margin-bottom: 2px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--dorado);
+  color: var(--rojo-oscuro);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tarjeta-cine__desde {
+  font-size: 11px;
+  color: rgb(255 255 255 / 75%);
+}
+
+.tarjeta-cine__monto {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--blanco);
+}
+
+/* ---------- Cuerpo ---------- */
+
+.tarjeta-cine__cuerpo {
+  padding: var(--espacio-medio);
+}
+
+.tarjeta-cine__seccion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--rojo-principal);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tarjeta-cine__seccion-icono {
+  width: 16px;
+  height: 16px;
+}
+
+.tarjeta-cine__linea {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--crema-borde);
+}
+
+.tarjeta-cine__funciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 560px) {
+  .tarjeta-cine__precio {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tarjeta-cine__precio-texto {
+    align-items: center;
+  }
+}

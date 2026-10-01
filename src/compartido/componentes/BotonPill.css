@@ -1,0 +1,23 @@
+.boton-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border: 0;
+  border-radius: var(--radio-boton);
+  background: var(--crema-fondo);
+  color: var(--rojo-principal);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--crema-borde);
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.boton-pill:hover {
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  box-shadow: inset 0 0 0 1px var(--rojo-principal);
+}

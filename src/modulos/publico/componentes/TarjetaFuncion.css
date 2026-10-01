@@ -1,0 +1,97 @@
+.tarjeta-funcion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 230px;
+  min-width: 220px;
+  padding: 8px 14px;
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-boton);
+  background: var(--crema-fondo);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.tarjeta-funcion:hover {
+  border-color: var(--dorado);
+  background: var(--blanco);
+}
+
+.tarjeta-funcion__icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--crema-oscuro);
+  color: var(--rojo-principal);
+}
+
+.tarjeta-funcion__icono svg {
+  width: 17px;
+  height: 17px;
+}
+
+.tarjeta-funcion__datos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tarjeta-funcion__fila {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tarjeta-funcion__hora {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gris-texto);
+}
+
+.tarjeta-funcion__formato {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.tarjeta-funcion__tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--gris-texto);
+}
+
+.tarjeta-funcion__tipo svg {
+  width: 12px;
+  height: 12px;
+}
+
+.tarjeta-funcion__divisor {
+  width: 1px;
+  align-self: stretch;
+  background: var(--crema-borde);
+  margin-inline: 4px;
+}
+
+.tarjeta-funcion__precio {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--rojo-principal);
+  white-space: nowrap;
+}
+
+.tarjeta-funcion__flecha {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  color: var(--gris-placeholder);
+  flex-shrink: 0;
+}
