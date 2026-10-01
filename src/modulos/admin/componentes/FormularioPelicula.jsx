@@ -2,6 +2,19 @@ import { useState } from 'react';
 import Boton from '../../../compartido/componentes/Boton';
 import './FormularioPelicula.css';
 
+// Clasificación por edades que usa el Comité de Clasificación de Películas
+// de Colombia (la misma que aparece en la boletería de Cine Colombia,
+// Cinemark y Royal Films en Ibagué), en vez de la escala MPAA (PG-13, R…)
+// que no se usa acá.
+const CLASIFICACIONES_COLOMBIA = [
+  { valor: '', texto: 'Selecciona una clasificación' },
+  { valor: 'T', texto: 'T — Todo público' },
+  { valor: '7', texto: '7 — Mayores de 7 años' },
+  { valor: '12', texto: '12 — Mayores de 12 años' },
+  { valor: '15', texto: '15 — Mayores de 15 años' },
+  { valor: '18', texto: '18 — Exclusivo para mayores de 18 años' },
+];
+
 const VALORES_VACIOS = {
   titulo: '',
   sinopsis: '',
@@ -80,13 +93,19 @@ export default function FormularioPelicula({ peliculaInicial, onGuardar, onCance
       <div className="formulario-pelicula__fila">
         <div className="formulario-pelicula__campo">
           <label htmlFor="clasificacion">Clasificación</label>
-          <input
+          <select
             id="clasificacion"
             name="clasificacion"
-            placeholder="PG-13"
             value={valores.clasificacion}
             onChange={manejarCambio}
-          />
+            required
+          >
+            {CLASIFICACIONES_COLOMBIA.map((opcion) => (
+              <option key={opcion.valor} value={opcion.valor} disabled={opcion.valor === ''}>
+                {opcion.texto}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="formulario-pelicula__campo">
           <label htmlFor="idioma">Idioma</label>

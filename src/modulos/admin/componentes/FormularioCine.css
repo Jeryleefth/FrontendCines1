@@ -1,0 +1,129 @@
+.formulario-cine {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: var(--espacio-medio);
+  background: var(--crema-fondo);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  margin-bottom: var(--espacio-medio);
+}
+
+.formulario-cine__fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.formulario-cine__campo {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formulario-cine__campo label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gris-texto);
+}
+
+.formulario-cine__campo input,
+.formulario-cine__campo select {
+  padding: 10px 12px;
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-boton);
+  background: var(--blanco);
+  color: var(--gris-texto);
+  font: inherit;
+}
+
+.formulario-cine__campo select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 34px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b1e2b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px 14px;
+}
+
+.formulario-cine__campo input:focus-visible,
+.formulario-cine__campo select:focus-visible {
+  outline: none;
+  border-color: var(--rojo-principal);
+  box-shadow: 0 0 0 3px rgb(139 30 43 / 12%);
+}
+
+.formulario-cine__salas {
+  padding-top: 6px;
+  border-top: 1px solid var(--crema-borde);
+}
+
+.formulario-cine__salas-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.formulario-cine__salas-encabezado h3 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--rojo-principal);
+}
+
+.formulario-cine__sala {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.formulario-cine__sala input,
+.formulario-cine__sala select {
+  padding: 8px 12px;
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-boton);
+  background: var(--blanco);
+  color: var(--gris-texto);
+  font: inherit;
+  font-size: 14px;
+}
+
+.formulario-cine__sala-nombre {
+  flex: 2 1 180px;
+}
+
+.formulario-cine__sala-capacidad {
+  flex: 1 1 100px;
+}
+
+.formulario-cine__sala-tipo {
+  flex: 0 1 90px;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 28px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b1e2b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px 12px;
+}
+
+.formulario-cine__sala .boton {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.formulario-cine__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}

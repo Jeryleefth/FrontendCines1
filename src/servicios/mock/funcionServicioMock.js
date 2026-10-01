@@ -10,7 +10,11 @@ function armarFuncion(fila) {
   return {
     id: fila.id,
     peliculaId: fila.peliculaId,
-    fecha: fechaDesdeHoy(fila.diasDesdeHoy),
+    // Las funciones semilla (mocks/funciones.json) guardan "diasDesdeHoy"
+    // para que la fecha siempre caiga cerca de hoy sin importar cuándo se
+    // abra el proyecto. Las que crea el panel de administración guardan ya
+    // una fecha real (`fila.fecha`), así que se usa esa directamente.
+    fecha: fila.fecha ?? fechaDesdeHoy(fila.diasDesdeHoy),
     horaInicio: fila.horaInicio,
     horaFin: fila.horaFin,
     tipoFuncion: fila.tipoFuncion,
@@ -81,5 +85,33 @@ export const funcionServicioMock = {
       .sort((a, b) => a.precioDesde - b.precioDesde);
 
     return simularLatencia(comparacion);
+  },
+
+  /**
+   * `datos` trae peliculaId, cineId, salaId, fecha, horaInicio, horaFin,
+   * tipoFuncion, formato y precio — la forma "plana" que arma el formulario,
+   * no la forma con cine/sala ya resueltos que devuelve `armarFuncion`.
+   * @returns {Promise<import('../tipos').Funcion>}
+   */
+  async crear(datos) {
+    const nueva = { ...datos, id: `fn-${Date.now()}` };
+    funciones.push(nueva);
+    return simularLatencia(armarFuncion(nueva));
+  },
+
+  /** @returns {Promise<import('../tipos').Funcion>} */
+  async actualizar(id, datos) {
+    const indice = funciones.findIndex((f) => f.id === id);
+    if (indice === -1) throw noEncontrado('la función', id);
+    funciones[indice] = { ...funciones[indice], ...datos, id };
+    return simularLatencia(armarFuncion(funciones[indice]));
+  },
+
+  /** @returns {Promise<void>} */
+  async eliminar(id) {
+    const indice = funciones.findIndex((f) => f.id === id);
+    if (indice === -1) throw noEncontrado('la función', id);
+    funciones.splice(indice, 1);
+    return simularLatencia(undefined);
   },
 };

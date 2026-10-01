@@ -1,4 +1,4 @@
-.formulario-pelicula {
+.formulario-funcion {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -9,50 +9,37 @@
   margin-bottom: var(--espacio-medio);
 }
 
-.formulario-pelicula__fila {
+.formulario-funcion__fila {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
 
-.formulario-pelicula__fila .formulario-pelicula__campo {
-  flex: 1 1 200px;
-}
-
-.formulario-pelicula__campo {
+.formulario-funcion__campo {
+  flex: 1 1 180px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.formulario-pelicula__campo label {
+.formulario-funcion__campo label,
+.formulario-funcion__etiqueta {
   font-size: 12px;
   font-weight: 700;
   color: var(--gris-texto);
 }
 
-.formulario-pelicula__campo input,
-.formulario-pelicula__campo textarea,
-.formulario-pelicula__campo select {
+.formulario-funcion__campo input,
+.formulario-funcion__campo select {
   padding: 10px 12px;
   border: 1px solid var(--crema-borde);
   border-radius: var(--radio-boton);
   background: var(--blanco);
   color: var(--gris-texto);
   font: inherit;
-  resize: vertical;
 }
 
-.formulario-pelicula__campo input:focus-visible,
-.formulario-pelicula__campo textarea:focus-visible,
-.formulario-pelicula__campo select:focus-visible {
-  outline: none;
-  border-color: var(--rojo-principal);
-  box-shadow: 0 0 0 3px rgb(139 30 43 / 12%);
-}
-
-/* Select de clasificación: flecha propia en vez de la del sistema operativo */
-.formulario-pelicula__campo select {
+.formulario-funcion__campo select {
   appearance: none;
   -webkit-appearance: none;
   padding-right: 34px;
@@ -63,7 +50,32 @@
   background-size: 14px 14px;
 }
 
-.formulario-pelicula__acciones {
+.formulario-funcion__campo select:disabled {
+  background-color: var(--crema-fondo);
+  color: var(--gris-placeholder);
+  cursor: not-allowed;
+}
+
+.formulario-funcion__campo input:focus-visible,
+.formulario-funcion__campo select:focus-visible {
+  outline: none;
+  border-color: var(--rojo-principal);
+  box-shadow: 0 0 0 3px rgb(139 30 43 / 12%);
+}
+
+/* El formato no se escribe: se muestra como texto, ya calculado a partir de
+   la sala elegida (ver cambiarSala en el componente). */
+.formulario-funcion__formato {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--crema-borde);
+  border-radius: var(--radio-boton);
+  background: var(--blanco);
+  color: var(--gris-texto);
+  font-weight: 700;
+}
+
+.formulario-funcion__acciones {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
