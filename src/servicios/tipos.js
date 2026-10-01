@@ -49,7 +49,7 @@
  * @property {string} formato         "2D" | "3D" | "VIP".
  * @property {number} precio          Pesos colombianos (COP).
  * @property {{id: string, nombre: string, cadena: string}} cine
- * @property {{id: string, nombre: string, tipo: string}} sala
+ * @property {{id: string, nombre: string, tipo: string, capacidad: number}} sala
  */
 
 /**

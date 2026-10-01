@@ -1,0 +1,44 @@
+.seleccion-asientos__detalle {
+  margin: 0 0 var(--espacio-medio);
+  text-align: center;
+  color: var(--gris-texto);
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.seleccion-asientos__resumen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: var(--espacio-medio);
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.seleccion-asientos__texto {
+  font-size: 14px;
+  color: var(--gris-texto);
+}
+
+.seleccion-asientos__total {
+  font-size: 16px;
+  color: var(--gris-texto);
+}
+
+.seleccion-asientos__total strong {
+  color: var(--rojo-principal);
+  font-size: 19px;
+}
+
+.seleccion-asientos__mensaje {
+  margin-top: 12px;
+  padding: 12px var(--espacio-medio);
+  border-radius: var(--radio-boton);
+  background: var(--crema-fondo);
+  color: var(--rojo-principal);
+  font-weight: 700;
+  text-align: center;
+}

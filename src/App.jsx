@@ -3,6 +3,7 @@ import Layout from './compartido/componentes/Layout';
 import { ENLACES_NAVEGACION } from './configuracion/navegacion';
 import Cartelera from './modulos/publico/paginas/Cartelera';
 import Comparador from './modulos/publico/paginas/Comparador';
+import SeleccionAsientos from './modulos/publico/paginas/SeleccionAsientos';
 import PanelAdmin from './modulos/admin/paginas/PanelAdmin';
 
 // Tabla de rutas: qué componente se muestra para cada URL.
@@ -15,6 +16,7 @@ export default function App() {
           <Route index element={<Cartelera />} />
           <Route path="comparador" element={<Comparador />} />
           <Route path="comparador/:peliculaId" element={<Comparador />} />
+          <Route path="funcion/:funcionId/asientos" element={<SeleccionAsientos />} />
           <Route path="admin" element={<PanelAdmin />} />
           <Route
             path="*"

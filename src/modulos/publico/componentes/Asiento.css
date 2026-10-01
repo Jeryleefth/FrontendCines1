@@ -1,0 +1,42 @@
+.asiento {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 1px solid var(--crema-borde);
+  border-radius: 8px 8px 4px 4px;
+  background: var(--crema-fondo);
+  color: var(--gris-texto);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.asiento:hover:not(:disabled) {
+  border-color: var(--dorado);
+  transform: translateY(-1px);
+}
+
+.asiento--seleccionado {
+  background: var(--rojo-principal);
+  border-color: var(--rojo-principal);
+  color: var(--blanco);
+}
+
+.asiento--ocupado {
+  background: var(--gris-placeholder);
+  border-color: var(--gris-placeholder);
+  color: var(--blanco);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .asiento {
+    width: 28px;
+    height: 28px;
+  }
+}

@@ -1,0 +1,100 @@
+.mapa-asientos {
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-grande) var(--espacio-medio);
+  margin-bottom: var(--espacio-medio);
+}
+
+.mapa-asientos__pantalla {
+  width: min(480px, 80%);
+  height: 10px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--dorado) 0%, var(--crema-oscuro) 100%);
+  border-radius: 50%;
+  box-shadow: 0 18px 30px -12px rgb(210 176 126 / 60%);
+}
+
+.mapa-asientos__etiqueta-pantalla {
+  margin: 8px 0 28px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris-placeholder);
+}
+
+.mapa-asientos__filas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mapa-asientos__fila {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mapa-asientos__letra {
+  width: 16px;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gris-placeholder);
+}
+
+.mapa-asientos__asientos {
+  display: flex;
+  gap: 6px;
+}
+
+/* "Pasillo" central entre la butaca 3 y la 4, como en una sala real */
+.mapa-asientos__asientos > *:nth-child(3) {
+  margin-right: 14px;
+}
+
+.mapa-asientos__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--crema-borde);
+}
+
+.mapa-asientos__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--gris-texto);
+}
+
+.mapa-asientos__muestra {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--crema-fondo);
+  border: 1px solid var(--crema-borde);
+}
+
+.mapa-asientos__muestra--seleccionado {
+  background: var(--rojo-principal);
+  border-color: var(--rojo-principal);
+}
+
+.mapa-asientos__muestra--ocupado {
+  background: var(--gris-placeholder);
+  border-color: var(--gris-placeholder);
+}
+
+@media (max-width: 480px) {
+  .mapa-asientos__asientos {
+    gap: 4px;
+  }
+}

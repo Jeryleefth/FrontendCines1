@@ -25,3 +25,21 @@
 .boton--secundario:hover {
   background: var(--crema-oscuro);
 }
+
+.boton--peligro {
+  background: transparent;
+  color: var(--rojo-principal);
+  box-shadow: inset 0 0 0 1.5px var(--rojo-principal);
+}
+
+.boton--peligro:hover {
+  background: var(--rojo-principal);
+  color: var(--blanco);
+}
+
+.boton:disabled {
+  background: var(--crema-fondo);
+  color: var(--gris-placeholder);
+  box-shadow: inset 0 0 0 1px var(--crema-borde);
+  cursor: not-allowed;
+}

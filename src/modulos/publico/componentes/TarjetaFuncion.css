@@ -8,6 +8,8 @@
   border: 1px solid var(--crema-borde);
   border-radius: var(--radio-boton);
   background: var(--crema-fondo);
+  font: inherit;
+  text-align: left;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 

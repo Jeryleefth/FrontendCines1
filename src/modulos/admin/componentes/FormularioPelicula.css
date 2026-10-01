@@ -1,0 +1,57 @@
+.formulario-pelicula {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: var(--espacio-medio);
+  background: var(--crema-fondo);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  margin-bottom: var(--espacio-medio);
+}
+
+.formulario-pelicula__fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.formulario-pelicula__fila .formulario-pelicula__campo {
+  flex: 1 1 200px;
+}
+
+.formulario-pelicula__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formulario-pelicula__campo label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gris-texto);
+}
+
+.formulario-pelicula__campo input,
+.formulario-pelicula__campo textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-boton);
+  background: var(--blanco);
+  color: var(--gris-texto);
+  font: inherit;
+  resize: vertical;
+}
+
+.formulario-pelicula__campo input:focus-visible,
+.formulario-pelicula__campo textarea:focus-visible {
+  outline: none;
+  border-color: var(--rojo-principal);
+  box-shadow: 0 0 0 3px rgb(139 30 43 / 12%);
+}
+
+.formulario-pelicula__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}

@@ -1,0 +1,58 @@
+.tabla-peliculas__envoltorio {
+  overflow-x: auto;
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  margin-bottom: var(--espacio-medio);
+}
+
+.tabla-peliculas {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabla-peliculas th {
+  padding: 12px var(--espacio-medio);
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--rojo-principal);
+  border-bottom: 1px solid var(--crema-borde);
+  white-space: nowrap;
+}
+
+.tabla-peliculas td {
+  padding: 10px var(--espacio-medio);
+  border-bottom: 1px solid var(--crema-borde);
+  color: var(--gris-texto);
+  white-space: nowrap;
+}
+
+.tabla-peliculas tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabla-peliculas tbody tr:hover {
+  background: var(--crema-fondo);
+}
+
+.tabla-peliculas__acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabla-peliculas__acciones .boton {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.tabla-peliculas__pregunta {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--rojo-principal);
+  margin-right: 4px;
+}

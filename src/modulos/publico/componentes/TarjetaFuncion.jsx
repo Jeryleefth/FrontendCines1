@@ -1,16 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import { IconBurbuja, IconChevronDerecha, IconReloj } from '../../../compartido/componentes/iconos';
+import { formatearPrecio } from '../../../compartido/utilidades/formato';
 import './TarjetaFuncion.css';
 
-const formatoMoneda = (valor) =>
-  valor.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
-
 // Tarjeta "hoja": no recibe children, solo pinta un objeto Funcion (ver
-// servicios/tipos.js). La flecha de la derecha queda lista para cuando se
-// construya la selección de asientos (próximo paso del roadmap): por ahora
-// es solo visual, todavía no navega a ningún lado.
+// servicios/tipos.js). Al tocarla, navega a la selección de asientos de
+// ESTA función — por eso le basta con conocer `funcion.id`, no hace falta
+// que nadie le pase una función `onClick` desde afuera.
 export default function TarjetaFuncion({ funcion }) {
+  const navegar = useNavigate();
+
   return (
-    <div className="tarjeta-funcion">
+    <button
+      type="button"
+      className="tarjeta-funcion"
+      onClick={() => navegar(`/funcion/${funcion.id}/asientos`)}
+    >
       <span className="tarjeta-funcion__icono">
         <IconReloj />
       </span>
@@ -27,8 +32,8 @@ export default function TarjetaFuncion({ funcion }) {
       </span>
 
       <span className="tarjeta-funcion__divisor" aria-hidden="true" />
-      <span className="tarjeta-funcion__precio">{formatoMoneda(funcion.precio)}</span>
+      <span className="tarjeta-funcion__precio">{formatearPrecio(funcion.precio)}</span>
       <IconChevronDerecha className="tarjeta-funcion__flecha" />
-    </div>
+    </button>
   );
 }
