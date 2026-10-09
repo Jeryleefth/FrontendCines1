@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   IconCandado,
   IconCorreo,
-  IconFlechaDerecha,
   IconOjo,
   IconOjoCerrado,
   IconTelefono,
@@ -227,7 +226,6 @@ export default function Acceso() {
 
             <button type="submit" className="acceso-tarjeta__enviar" disabled={enviando}>
               {textoBoton}
-              <IconFlechaDerecha />
             </button>
           </form>
         </div>

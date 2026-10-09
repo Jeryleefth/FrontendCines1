@@ -11,6 +11,7 @@ import Perfil from './modulos/clientes/paginas/Perfil';
 import Cartelera from './modulos/publico/paginas/Cartelera';
 import Comparador from './modulos/publico/paginas/Comparador';
 import SeleccionAsientos from './modulos/publico/paginas/SeleccionAsientos';
+import Pago from './modulos/publico/paginas/Pago';
 import PanelAdmin from './modulos/admin/paginas/PanelAdmin';
 
 // Tabla de rutas: qué componente se muestra para cada URL.
@@ -49,6 +50,10 @@ export default function App() {
               <Route element={<RutaProtegidaCliente />}>
                 <Route path="mis-reservas" element={<MisReservas />} />
                 <Route path="perfil" element={<Perfil />} />
+                {/* Pago exige sesión de cliente por la misma razón que
+                    Mis reservas: hay que saber a qué correo asociar la
+                    reserva que se crea cuando el pago "sale bien". */}
+                <Route path="funcion/:funcionId/pago" element={<Pago />} />
               </Route>
 
               <Route
