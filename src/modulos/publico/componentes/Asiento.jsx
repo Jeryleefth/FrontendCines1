@@ -6,7 +6,7 @@ import './Asiento.css';
 // padre (MapaAsientos → SeleccionAsientos) quien decide qué significa ese
 // clic — el mismo reparto de responsabilidades de los componentes
 // controlados que ya usamos en los filtros de la cartelera.
-export default function Asiento({ id, ocupado, seleccionado, onClick }) {
+export default function Asiento({ id, etiqueta = id, ocupado, seleccionado, onClick }) {
   const clases = ['asiento'];
   if (ocupado) clases.push('asiento--ocupado');
   if (seleccionado) clases.push('asiento--seleccionado');
@@ -24,10 +24,10 @@ export default function Asiento({ id, ocupado, seleccionado, onClick }) {
       // no solo "sin reacción al clic", sino visualmente bloqueado.
       disabled={ocupado || !onClick}
       aria-pressed={seleccionado}
-      aria-label={`Asiento ${id}, ${descripcion}`}
+      aria-label={`Asiento ${etiqueta}, ${descripcion}`}
       onClick={() => onClick?.(id)}
     >
-      {id}
+      {etiqueta}
     </button>
   );
 }

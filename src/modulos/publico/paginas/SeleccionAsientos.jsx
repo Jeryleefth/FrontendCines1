@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Banner from '../../../compartido/componentes/Banner';
 import Boton from '../../../compartido/componentes/Boton';
@@ -7,7 +7,6 @@ import Cargando from '../../../compartido/componentes/Cargando';
 import MapaAsientos from '../componentes/MapaAsientos';
 import { funcionServicio, peliculaServicio } from '../../../servicios';
 import { useClienteAuth } from '../../clientes/contexto/ClienteAuthContext';
-import { construirAsientos } from '../../../compartido/utilidades/asientos';
 import { formatearFecha, formatearPrecio } from '../../../compartido/utilidades/formato';
 import './SeleccionAsientos.css';
 
@@ -27,6 +26,7 @@ export default function SeleccionAsientos() {
   // página), no en cada <Asiento>, porque hace falta verlo completo para
   // calcular el total y para saber qué asientos pintar en rojo.
   const [seleccionados, setSeleccionados] = useState([]);
+  const [filas, setFilas] = useState([]);
 
   useEffect(() => {
     let activo = true;
@@ -42,10 +42,17 @@ export default function SeleccionAsientos() {
       .then((datosFuncion) => {
         if (!activo) return undefined;
         setFuncion(datosFuncion);
-        return peliculaServicio.buscarPorId(datosFuncion.peliculaId);
+        return Promise.all([peliculaServicio.buscarPorId(datosFuncion.peliculaId), funcionServicio.asientos(datosFuncion.id)]);
       })
-      .then((datosPelicula) => {
-        if (activo && datosPelicula) setPelicula(datosPelicula);
+      .then(([datosPelicula, asientos]) => {
+        if (!activo) return;
+        setPelicula(datosPelicula);
+        const agrupados = new Map();
+        asientos.forEach((asiento) => {
+          if (!agrupados.has(asiento.fila)) agrupados.set(asiento.fila, []);
+          agrupados.get(asiento.fila).push({ id: asiento.id, ocupado: asiento.ocupado, etiqueta: `${asiento.fila}${asiento.numero}` });
+        });
+        setFilas([...agrupados].map(([letra, lista]) => ({ letra, asientos: lista })));
       })
       .catch((e) => activo && setError(e.message))
       .finally(() => activo && setCargando(false));
@@ -58,10 +65,6 @@ export default function SeleccionAsientos() {
   // Se recalcula solo si cambia la función, no en cada clic sobre un
   // asiento: los asientos "ocupados" dependen de qué función es, no de qué
   // haya seleccionado la persona en este momento.
-  const filas = useMemo(
-    () => (funcion ? construirAsientos(funcion.id, funcion.sala.capacidad) : []),
-    [funcion],
-  );
 
   const alternarAsiento = (idAsiento) => {
     setSeleccionados((actual) =>

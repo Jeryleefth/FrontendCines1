@@ -8,4 +8,5 @@ export const funcionServicioApi = {
   crear: (datos) => clienteHttp.crear('/funciones', datos),
   actualizar: (id, datos) => clienteHttp.actualizar(`/funciones/${id}`, datos),
   eliminar: (id) => clienteHttp.eliminar(`/funciones/${id}`),
+  asientos: (id) => clienteHttp.obtener(`/funciones/${id}/asientos`),
 };

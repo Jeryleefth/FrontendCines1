@@ -21,6 +21,7 @@ export default function MapaAsientos({ filas, seleccionados, onSeleccionar }) {
                 <Asiento
                   key={asiento.id}
                   id={asiento.id}
+                  etiqueta={asiento.etiqueta}
                   ocupado={asiento.ocupado}
                   seleccionado={seleccionados.includes(asiento.id)}
                   onClick={onSeleccionar}
