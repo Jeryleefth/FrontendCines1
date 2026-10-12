@@ -68,6 +68,7 @@ export default function FormularioPelicula({ peliculaInicial, onGuardar, onCance
           rows={3}
           value={valores.sinopsis}
           onChange={manejarCambio}
+          required
         />
       </div>
 
@@ -109,7 +110,7 @@ export default function FormularioPelicula({ peliculaInicial, onGuardar, onCance
         </div>
         <div className="formulario-pelicula__campo">
           <label htmlFor="idioma">Idioma</label>
-          <input id="idioma" name="idioma" value={valores.idioma} onChange={manejarCambio} />
+          <input id="idioma" name="idioma" value={valores.idioma} onChange={manejarCambio} required />
         </div>
       </div>
 
@@ -122,6 +123,7 @@ export default function FormularioPelicula({ peliculaInicial, onGuardar, onCance
             type="date"
             value={valores.fechaEstreno}
             onChange={manejarCambio}
+            required
           />
         </div>
         <div className="formulario-pelicula__campo">
@@ -132,6 +134,8 @@ export default function FormularioPelicula({ peliculaInicial, onGuardar, onCance
             placeholder="https://…"
             value={valores.rutaImagen}
             onChange={manejarCambio}
+            type="url"
+            required
           />
         </div>
       </div>

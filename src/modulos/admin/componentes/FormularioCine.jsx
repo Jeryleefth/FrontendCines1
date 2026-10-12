@@ -54,6 +54,10 @@ export default function FormularioCine({ cineInicial, onGuardar, onCancelar }) {
 
   const manejarEnvio = async (evento) => {
     evento.preventDefault();
+    if (valores.salas.length === 0) {
+      window.alert('Agrega al menos una sala antes de guardar el cine.');
+      return;
+    }
     setGuardando(true);
     try {
       await onGuardar({

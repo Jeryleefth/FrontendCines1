@@ -36,16 +36,33 @@ function aplanar(funcion) {
   };
 }
 
+function calcularHoraFin(horaInicio, duracion) {
+  if (!horaInicio || !Number.isFinite(Number(duracion)) || Number(duracion) <= 0) return '';
+  const [horas, minutos] = horaInicio.split(':').map(Number);
+  const totalMinutos = horas * 60 + minutos + Number(duracion);
+  // Las funciones de este proyecto deben terminar el mismo día.
+  if (totalMinutos >= 24 * 60) return '';
+  return `${String(Math.floor(totalMinutos / 60)).padStart(2, '0')}:${String(totalMinutos % 60).padStart(2, '0')}`;
+}
+
 export default function FormularioFuncion({ funcionInicial, peliculas, cines, onGuardar, onCancelar }) {
   const [valores, setValores] = useState(() => aplanar(funcionInicial));
   const [guardando, setGuardando] = useState(false);
 
   const cineSeleccionado = cines.find((cine) => cine.id === valores.cineId);
   const salasDisponibles = cineSeleccionado?.salas ?? [];
+  const peliculaSeleccionada = peliculas.find((pelicula) => pelicula.id === valores.peliculaId);
 
   const manejarCambio = (evento) => {
     const { name, value } = evento.target;
-    setValores((actual) => ({ ...actual, [name]: value }));
+    setValores((actual) => {
+      const siguientes = { ...actual, [name]: value };
+      if (name === 'peliculaId' || name === 'horaInicio') {
+        const pelicula = peliculas.find((item) => item.id === siguientes.peliculaId);
+        return { ...siguientes, horaFin: calcularHoraFin(siguientes.horaInicio, pelicula?.duracion) };
+      }
+      return siguientes;
+    });
   };
 
   // Cambiar de cine invalida la sala que estuviera elegida (es de OTRO
@@ -162,9 +179,14 @@ export default function FormularioFuncion({ funcionInicial, peliculas, cines, on
             name="horaFin"
             type="time"
             value={valores.horaFin}
-            onChange={manejarCambio}
+            readOnly
             required
           />
+          <small>
+            {peliculaSeleccionada
+              ? `Se calcula automáticamente con los ${peliculaSeleccionada.duracion} minutos de la película.`
+              : 'Elige una película y una hora de inicio para calcularla.'}
+          </small>
         </div>
       </div>
 
