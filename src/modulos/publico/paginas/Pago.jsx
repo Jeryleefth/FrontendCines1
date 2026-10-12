@@ -19,11 +19,15 @@ export default function Pago() {
   }
 
   const confirmar = async () => {
+    let reservaCreada = null;
     try {
-      const reserva = await reservaServicio.crear({ ...state, funcionId, correoCliente: cliente.correo });
-      await pagoServicio.crear({ reservaId: reserva.id, metodoPago });
+      reservaCreada = await reservaServicio.crear({ ...state, funcionId, correoCliente: cliente.correo });
+      await pagoServicio.crear({ reservaId: reservaCreada.id, metodoPago });
       navegar('/mis-reservas', { replace: true });
     } catch (error) {
+      // Si Django está apagado o rechaza el pago, se cancela la reserva
+      // temporal y Spring libera sus asientos para no dejar datos bloqueados.
+      if (reservaCreada) await reservaServicio.cancelar(reservaCreada.id).catch(() => undefined);
       window.alert(`No se pudo completar el pago: ${error.message}`);
     }
   };

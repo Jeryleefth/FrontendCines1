@@ -16,6 +16,12 @@ export const reservaServicioMock = {
     return simularLatencia(nueva);
   },
 
+  async cancelar(id) {
+    const indice = reservas.findIndex((reserva) => reserva.id === id);
+    if (indice >= 0) reservas.splice(indice, 1);
+    return simularLatencia(null);
+  },
+
   /**
    * Reservas de un cliente, más recientes primero.
    * @returns {Promise<Object[]>}
