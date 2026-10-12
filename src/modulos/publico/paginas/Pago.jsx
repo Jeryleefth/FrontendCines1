@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Banner from '../../../compartido/componentes/Banner';
 import Boton from '../../../compartido/componentes/Boton';
 import BotonPill from '../../../compartido/componentes/BotonPill';
-import { reservaServicio } from '../../../servicios';
+import { pagoServicio, reservaServicio } from '../../../servicios';
 import { useClienteAuth } from '../../clientes/contexto/ClienteAuthContext';
 import { formatearFecha, formatearPrecio } from '../../../compartido/utilidades/formato';
 
@@ -11,6 +12,7 @@ export default function Pago() {
   const { state } = useLocation();
   const navegar = useNavigate();
   const { cliente } = useClienteAuth();
+  const [metodoPago, setMetodoPago] = useState('TARJETA');
 
   if (!state) {
     return <div className="contenedor"><p className="mensaje-estado mensaje-estado--error">No hay una reserva pendiente de pago.</p><BotonPill to="/">Volver a cartelera</BotonPill></div>;
@@ -18,7 +20,8 @@ export default function Pago() {
 
   const confirmar = async () => {
     try {
-      await reservaServicio.crear({ ...state, funcionId, correoCliente: cliente.correo });
+      const reserva = await reservaServicio.crear({ ...state, funcionId, correoCliente: cliente.correo });
+      await pagoServicio.crear({ reservaId: reserva.id, metodoPago });
       navegar('/mis-reservas', { replace: true });
     } catch (error) {
       window.alert(`No se pudo completar el pago: ${error.message}`);
@@ -34,6 +37,14 @@ export default function Pago() {
         <p>{formatearFecha(state.fecha)} · {state.horaInicio}</p>
         <p>Asientos seleccionados: {state.asientos.length}</p>
         <p><strong>Total: {formatearPrecio(state.total)}</strong></p>
+        <label>
+          Método de pago
+          <select value={metodoPago} onChange={(evento) => setMetodoPago(evento.target.value)}>
+            <option value="TARJETA">Tarjeta</option>
+            <option value="PSE">PSE</option>
+            <option value="EFECTIVO">Efectivo</option>
+          </select>
+        </label>
         <Boton onClick={confirmar}>Pagar y confirmar reserva</Boton>
       </main>
     </>

@@ -12,12 +12,14 @@ import { funcionServicioMock } from './mock/funcionServicioMock';
 import { authServicioMock } from './mock/authServicioMock';
 import { clienteAuthServicioMock } from './mock/clienteAuthServicioMock';
 import { reservaServicioMock } from './mock/reservaServicioMock';
+import { pagoServicioMock } from './mock/pagoServicioMock';
 import { peliculaServicioApi } from './api/peliculaServicioApi';
 import { cineServicioApi } from './api/cineServicioApi';
 import { funcionServicioApi } from './api/funcionServicioApi';
 import { authServicioApi } from './api/authServicioApi';
 import { clienteAuthServicioApi } from './api/clienteAuthServicioApi';
 import { reservaServicioApi } from './api/reservaServicioApi';
+import { pagoServicioApi } from './api/pagoServicioApi';
 
 export const peliculaServicio = USAR_MOCKS ? peliculaServicioMock : peliculaServicioApi;
 export const cineServicio = USAR_MOCKS ? cineServicioMock : cineServicioApi;
@@ -30,3 +32,4 @@ export const funcionServicio = USAR_MOCKS ? funcionServicioMock : funcionServici
 export const authServicio = USAR_MOCKS ? authServicioMock : authServicioApi;
 export const clienteAuthServicio = USAR_MOCKS ? clienteAuthServicioMock : clienteAuthServicioApi;
 export const reservaServicio = USAR_MOCKS ? reservaServicioMock : reservaServicioApi;
+export const pagoServicio = USAR_MOCKS ? pagoServicioMock : pagoServicioApi;

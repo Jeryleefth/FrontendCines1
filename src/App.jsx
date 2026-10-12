@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './compartido/componentes/Layout';
 import { ENLACES_NAVEGACION } from './configuracion/navegacion';
@@ -14,6 +15,41 @@ import SeleccionAsientos from './modulos/publico/paginas/SeleccionAsientos';
 import Pago from './modulos/publico/paginas/Pago';
 import PanelAdmin from './modulos/admin/paginas/PanelAdmin';
 
+function ContenidoApp() {
+  const { estaAutenticado: adminAutenticado, cerrarSesion: cerrarSesionAdmin } = useAuth();
+  const { estaAutenticado: clienteAutenticado } = useClienteAuth();
+
+  // Migración de seguridad: antes se permitía guardar ambos roles al mismo
+  // tiempo. Si una versión anterior dejó ese estado en localStorage,
+  // conservamos la sesión de cliente y eliminamos el acceso administrativo.
+  useEffect(() => {
+    if (adminAutenticado && clienteAutenticado) cerrarSesionAdmin();
+  }, [adminAutenticado, clienteAutenticado, cerrarSesionAdmin]);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout enlaces={ENLACES_NAVEGACION} />}>
+          <Route index element={<Cartelera />} />
+          <Route path="comparador" element={<Comparador />} />
+          <Route path="comparador/:peliculaId" element={<Comparador />} />
+          <Route path="funcion/:funcionId/asientos" element={<SeleccionAsientos />} />
+          <Route path="ingresar" element={<Acceso />} />
+          <Route element={<RutaProtegida />}>
+            <Route path="admin" element={<PanelAdmin />} />
+          </Route>
+          <Route element={<RutaProtegidaCliente />}>
+            <Route path="mis-reservas" element={<MisReservas />} />
+            <Route path="perfil" element={<Perfil />} />
+            <Route path="funcion/:funcionId/pago" element={<Pago />} />
+          </Route>
+          <Route path="*" element={<p className="mensaje-estado">La página que buscas no existe.</p>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
 // Tabla de rutas: qué componente se muestra para cada URL.
 
 export default function App() {
@@ -25,44 +61,7 @@ export default function App() {
     // que son dos providers separados, no uno compartido.
     <AuthProvider>
       <ClienteAuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout enlaces={ENLACES_NAVEGACION} />}>
-              <Route index element={<Cartelera />} />
-              <Route path="comparador" element={<Comparador />} />
-              <Route path="comparador/:peliculaId" element={<Comparador />} />
-              <Route path="funcion/:funcionId/asientos" element={<SeleccionAsientos />} />
-              {/* UNA sola puerta para administración y clientes: Acceso.jsx
-                  prueba las credenciales como admin y, si no corresponden,
-                  como cliente (ver ese archivo). Por eso ya no hace falta
-                  una ruta /login separada. */}
-              <Route path="ingresar" element={<Acceso />} />
-
-              {/* RutaProtegida es la "puerta" de administración: todo lo
-                  que esté anidado adentro exige sesión de admin. */}
-              <Route element={<RutaProtegida />}>
-                <Route path="admin" element={<PanelAdmin />} />
-              </Route>
-
-              {/* RutaProtegidaCliente es la puerta equivalente, pero para
-                  la sesión de cliente — una puerta distinta, porque son
-                  sesiones distintas. */}
-              <Route element={<RutaProtegidaCliente />}>
-                <Route path="mis-reservas" element={<MisReservas />} />
-                <Route path="perfil" element={<Perfil />} />
-                {/* Pago exige sesión de cliente por la misma razón que
-                    Mis reservas: hay que saber a qué correo asociar la
-                    reserva que se crea cuando el pago "sale bien". */}
-                <Route path="funcion/:funcionId/pago" element={<Pago />} />
-              </Route>
-
-              <Route
-                path="*"
-                element={<p className="mensaje-estado">La página que buscas no existe.</p>}
-              />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <ContenidoApp />
       </ClienteAuthProvider>
     </AuthProvider>
   );

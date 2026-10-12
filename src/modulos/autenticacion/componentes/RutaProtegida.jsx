@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexto/AuthContext';
+import { useClienteAuth } from '../../clientes/contexto/ClienteAuthContext';
 
 // Se usa como elemento "envoltorio" de una ruta en App.jsx (ver ahí). Si hay
 // sesión, deja pasar con <Outlet /> (el hueco donde React Router dibuja la
@@ -13,9 +14,12 @@ import { useAuth } from '../contexto/AuthContext';
 // archivo).
 export default function RutaProtegida() {
   const { estaAutenticado } = useAuth();
+  const { estaAutenticado: clienteAutenticado } = useClienteAuth();
   const ubicacion = useLocation();
 
-  if (!estaAutenticado) {
+  // Un cliente no puede entrar al panel incluso si el navegador conserva
+  // por error una sesión vieja de administrador.
+  if (!estaAutenticado || clienteAutenticado) {
     return <Navigate to="/ingresar" replace state={{ desde: ubicacion.pathname }} />;
   }
 

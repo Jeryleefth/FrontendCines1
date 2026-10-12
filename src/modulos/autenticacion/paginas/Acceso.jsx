@@ -41,8 +41,12 @@ export default function Acceso() {
   const ubicacion = useLocation();
   const navegar = useNavigate();
 
-  const { iniciarSesion: iniciarSesionAdmin } = useAuth();
-  const { iniciarSesion: iniciarSesionCliente, registrarse } = useClienteAuth();
+  const { iniciarSesion: iniciarSesionAdmin, cerrarSesion: cerrarSesionAdmin } = useAuth();
+  const {
+    iniciarSesion: iniciarSesionCliente,
+    registrarse,
+    cerrarSesion: cerrarSesionCliente,
+  } = useClienteAuth();
 
   const [modo, setModo] = useState('ingresar'); // 'ingresar' | 'registrar'
   const [valores, setValores] = useState(VALORES_VACIOS);
@@ -72,6 +76,9 @@ export default function Acceso() {
       if (modo === 'registrar') {
         // Crear cuenta SIEMPRE es de cliente: no hace falta probar nada más.
         await registrarse(valores.nombre, valores.correo, valores.telefono, valores.contrasena);
+        // Solo puede haber una sesión activa en este navegador. Si antes se
+        // usó una cuenta admin, se elimina para que no se mezclen los roles.
+        cerrarSesionAdmin();
         navegar(!esRutaDeAdmin(desde) && desde ? desde : '/mis-reservas', { replace: true });
         return;
       }
@@ -82,9 +89,14 @@ export default function Acceso() {
       // las dos fallan se muestra un mensaje de error.
       try {
         await iniciarSesionAdmin(valores.identificador, valores.contrasena);
+        // Una cuenta administradora reemplaza cualquier sesión de cliente.
+        cerrarSesionCliente();
         navegar(esRutaDeAdmin(desde) ? desde : '/admin', { replace: true });
       } catch {
         await iniciarSesionCliente(valores.identificador, valores.contrasena);
+        // Una cuenta de usuario nunca conserva privilegios de admin de una
+        // sesión anterior, por lo que Administración queda inaccesible.
+        cerrarSesionAdmin();
         navegar(!esRutaDeAdmin(desde) && desde ? desde : '/mis-reservas', { replace: true });
       }
     } catch (e) {

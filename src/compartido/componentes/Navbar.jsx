@@ -15,6 +15,11 @@ export default function Navbar({ enlaces }) {
   // hooks distintos — nunca se mezclan en un solo "¿hay alguien logueado?".
   const { estaAutenticado, cerrarSesion } = useAuth();
   const { estaAutenticado: clienteAutenticado, cerrarSesion: cerrarSesionCliente } = useClienteAuth();
+  // Si quedara una sesión antigua duplicada, se prioriza el cliente hasta
+  // que App.jsx elimine el estado administrativo obsoleto. Así nunca se
+  // muestra Administración a una persona que está usando su cuenta normal.
+  const sesionClienteActiva = clienteAutenticado;
+  const sesionAdminActiva = estaAutenticado && !sesionClienteActiva;
 
   // Qué botón de "Cerrar sesión" se está confirmando, no SI hay sesión
   // iniciada: 'admin' | 'cliente' | null. Las dos sesiones son
@@ -68,7 +73,7 @@ export default function Navbar({ enlaces }) {
                 como la puerta de vuelta al panel — a esa sesión se llega
                 iniciando sesión con credenciales de admin en /ingresar, no
                 eligiendo una opción "entrar como admin". */}
-            {estaAutenticado && (
+            {sesionAdminActiva && (
               <>
                 <li>
                   <NavLink
@@ -95,7 +100,7 @@ export default function Navbar({ enlaces }) {
             {/* Enlaces de CLIENTE: "Mis reservas" + "Cerrar sesión" cuando
                 hay sesión de cliente. Es independiente de la sesión de
                 admin de arriba — las dos pueden coexistir. */}
-            {clienteAutenticado && (
+            {sesionClienteActiva && (
               <>
                 <li>
                   <NavLink
@@ -133,7 +138,7 @@ export default function Navbar({ enlaces }) {
                 los dos roles: solo se muestra si no hay NINGUNA sesión
                 iniciada todavía (ver Acceso.jsx para cómo decide el rol a
                 partir de las credenciales). */}
-            {!estaAutenticado && !clienteAutenticado && (
+            {!sesionAdminActiva && !sesionClienteActiva && (
               <li>
                 <NavLink
                   to="/ingresar"

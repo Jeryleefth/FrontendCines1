@@ -45,4 +45,8 @@ src/
 3. Reinicia `npm run dev`. Si el JSON del backend difiere de `servicios/tipos.js`,
    se adapta en `servicios/api/*`, nunca en los componentes.
 
+## Arquitectura de pagos
+
+El frontend consume Spring Boot en `http://127.0.0.1:8081/api`. Al confirmar una reserva, Spring solicita el cobro al microservicio Django y Django confirma el resultado mediante un webhook. El navegador no llama a Django directamente.
+
 Los precios, horarios y direcciones de `src/mocks` son ilustrativos.
