@@ -58,7 +58,14 @@ export default function FormularioCine({ cineInicial, onGuardar, onCancelar }) {
     try {
       await onGuardar({
         ...valores,
-        salas: valores.salas.map((sala) => ({ ...sala, capacidad: Number(sala.capacidad) || 0 })),
+        // Los id que empiezan por `sala-nueva-` existen solo para que React
+        // pueda identificar la fila antes de guardarla. No son id de Spring;
+        // si se enviaban, el backend intentaba actualizar una sala inexistente.
+        salas: valores.salas.map(({ id, ...sala }) => ({
+          ...sala,
+          ...(id && !id.startsWith('sala-nueva-') ? { id } : {}),
+          capacidad: Number(sala.capacidad) || 0,
+        })),
       });
     } finally {
       setGuardando(false);
