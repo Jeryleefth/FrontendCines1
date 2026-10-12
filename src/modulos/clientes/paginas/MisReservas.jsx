@@ -18,7 +18,10 @@ export default function MisReservas() {
     setError(null);
     reservaServicio
       .listarPorCliente(cliente.correo)
-      .then((datos) => activo && setReservas(datos))
+      // Defensa adicional de interfaz: el historial muestra únicamente las
+      // reservas con pago confirmado. El filtro principal está en Spring,
+      // pero así tampoco se verá un intento pendiente ante datos antiguos.
+      .then((datos) => activo && setReservas(datos.filter((reserva) => reserva.estado === 'PAGADA')))
       .catch((e) => activo && setError(e.message))
       .finally(() => activo && setCargando(false));
     return () => {

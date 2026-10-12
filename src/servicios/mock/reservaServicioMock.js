@@ -11,7 +11,9 @@ const reservas = [];
 export const reservaServicioMock = {
   /** @returns {Promise<Object>} La reserva ya creada, con su id. */
   async crear(reserva) {
-    const nueva = { ...reserva, id: `res-${Date.now()}`, creadaEn: new Date().toISOString() };
+    // El mock representa el recorrido completo y exitoso de pago; por eso
+    // deja la reserva confirmada como PAGADA, igual que el webhook real.
+    const nueva = { ...reserva, id: `res-${Date.now()}`, estado: 'PAGADA', creadaEn: new Date().toISOString() };
     reservas.push(nueva);
     return simularLatencia(nueva);
   },
