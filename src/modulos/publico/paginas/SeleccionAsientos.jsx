@@ -75,6 +75,17 @@ export default function SeleccionAsientos() {
   };
 
   const total = funcion ? seleccionados.length * funcion.precio : 0;
+  // `seleccionados` conserva los id internos para enviarlos a Spring, pero
+  // al usuario se le muestra la etiqueta de la butaca (por ejemplo, D3).
+  const etiquetasSeleccionadas = seleccionados
+    .map((id) => {
+      for (const fila of filas) {
+        const asiento = fila.asientos.find((item) => item.id === id);
+        if (asiento) return asiento.etiqueta;
+      }
+      return id;
+    })
+    .sort();
 
   // Esta pantalla ya NO crea la reserva directamente: solo arma el
   // "carrito" (qué función, qué asientos, cuánto hay que pagar) y lo manda
@@ -136,7 +147,7 @@ export default function SeleccionAsientos() {
                 ) : (
                   <span>
                     {seleccionados.length} {seleccionados.length === 1 ? 'asiento' : 'asientos'}:{' '}
-                    <strong>{[...seleccionados].sort().join(', ')}</strong>
+                    <strong>{etiquetasSeleccionadas.join(', ')}</strong>
                   </span>
                 )}
               </div>
