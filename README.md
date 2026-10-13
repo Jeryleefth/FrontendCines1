@@ -37,14 +37,35 @@ src/
 │  └─ api/                   Implementación contra Spring Boot
 └─ mocks/                    cines.json, peliculas.json, funciones.json
 ```
+## Variables de entorno
 
-## Pasar a la API real
+Configura las variables en .env.local, tomando como referencia .env.example.
 
-1. Copia `.env.example` a `.env.local`.
-2. Cambia `VITE_USAR_MOCKS=false` y ajusta `VITE_URL_API`.
-3. Reinicia `npm run dev`. Si el JSON del backend difiere de `servicios/tipos.js`,
-   se adapta en `servicios/api/*`, nunca en los componentes.
+Variable	Descripción
+VITE_USAR_MOCKS	Activa los datos de prueba (true) o la API real (false).
+VITE_URL_API	URL base del backend Spring Boot.
 
+Ejemplo de configuración local:
+
+VITE_USAR_MOCKS=false
+VITE_URL_API=http://127.0.0.1:8081/api
+
+Las variables que comienzan por VITE_ son accesibles desde el código del navegador. No guardes contraseñas, claves privadas ni credenciales secretas en estas variables.
+
+Después de modificar las variables, reinicia el servidor de desarrollo.
+
+## Conexión con el backend
+
+La comunicación con Spring Boot se centraliza en la carpeta src/servicios/.
+
+index.js: punto de entrada que utilizan los componentes para acceder a los servicios.
+config.js: determina si se utilizan mocks o la API real.
+clienteHttp.js: centraliza las solicitudes HTTP y el manejo de respuestas.
+tipos.js: documenta los contratos de datos esperados.
+api/: contiene las implementaciones que consumen los endpoints del backend.
+mock/: contiene las implementaciones para trabajar con datos de prueba.
+
+Los componentes de React no deben realizar solicitudes HTTP directamente ni depender de la estructura interna de los mocks. Si la respuesta de Spring Boot tiene una estructura diferente, la adaptación debe realizarse en la capa de servicios.
 ## Arquitectura de pagos
 
 El frontend consume Spring Boot en `http://127.0.0.1:8081/api`. Al confirmar una reserva, Spring solicita el cobro al microservicio Django y Django confirma el resultado mediante un webhook. El navegador no llama a Django directamente.
