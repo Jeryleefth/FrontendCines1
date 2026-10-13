@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { IconBurbuja, IconChevronDerecha, IconReloj } from '../../../compartido/componentes/iconos';
-import { formatearPrecio } from '../../../compartido/utilidades/formato';
+import { formatearFecha, formatearPrecio } from '../../../compartido/utilidades/formato';
 import './TarjetaFuncion.css';
 
 // Tarjeta "hoja": no recibe children, solo pinta un objeto Funcion (ver
@@ -21,6 +21,7 @@ export default function TarjetaFuncion({ funcion }) {
       </span>
 
       <span className="tarjeta-funcion__datos">
+        <span className="tarjeta-funcion__fecha">{formatearFecha(funcion.fecha)}</span>
         <span className="tarjeta-funcion__fila">
           <span className="tarjeta-funcion__hora">{funcion.horaInicio}</span>
           <span className="tarjeta-funcion__formato">{funcion.formato}</span>

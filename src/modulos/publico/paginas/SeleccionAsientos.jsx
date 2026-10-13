@@ -105,6 +105,7 @@ export default function SeleccionAsientos() {
         fecha: funcion.fecha,
         horaInicio: funcion.horaInicio,
         asientos: seleccionados,
+        asientoEtiquetas: etiquetasSeleccionadas,
         total,
       },
     });

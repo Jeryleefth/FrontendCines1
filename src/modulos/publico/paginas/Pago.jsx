@@ -6,6 +6,7 @@ import BotonPill from '../../../compartido/componentes/BotonPill';
 import { pagoServicio, reservaServicio } from '../../../servicios';
 import { useClienteAuth } from '../../clientes/contexto/ClienteAuthContext';
 import { formatearFecha, formatearPrecio } from '../../../compartido/utilidades/formato';
+import './Pago.css';
 
 export default function Pago() {
   const { funcionId } = useParams();
@@ -35,21 +36,47 @@ export default function Pago() {
   return (
     <>
       <Banner titulo="Confirmar pago" subtitulo={state.peliculaTitulo} imagenFondo={state.peliculaImagen} superponerTexto />
-      <main className="contenedor">
-        <h1>Resumen de reserva</h1>
-        <p>{state.cineNombre} · {state.salaNombre} · {state.formato}</p>
-        <p>{formatearFecha(state.fecha)} · {state.horaInicio}</p>
-        <p>Asientos seleccionados: {state.asientos.length}</p>
-        <p><strong>Total: {formatearPrecio(state.total)}</strong></p>
-        <label>
-          Método de pago
-          <select value={metodoPago} onChange={(evento) => setMetodoPago(evento.target.value)}>
-            <option value="TARJETA">Tarjeta</option>
-            <option value="PSE">PSE</option>
-            <option value="EFECTIVO">Efectivo</option>
-          </select>
-        </label>
-        <Boton onClick={confirmar}>Pagar y confirmar reserva</Boton>
+      <main className="contenedor pago__contenedor">
+        <div className="pago__tarjeta">
+          <h1 className="pago__titulo">Resumen de reserva</h1>
+
+          <div className="pago__fila">
+            <span className="pago__etiqueta">Cine y sala</span>
+            <span className="pago__valor">{state.cineNombre} · {state.salaNombre} · {state.formato}</span>
+          </div>
+          <div className="pago__fila">
+            <span className="pago__etiqueta">Función</span>
+            <span className="pago__valor">{formatearFecha(state.fecha)} · {state.horaInicio}</span>
+          </div>
+          <div className="pago__fila">
+            <span className="pago__etiqueta">Asientos</span>
+            <span className="pago__valor">
+              {state.asientoEtiquetas?.length ? state.asientoEtiquetas.join(', ') : state.asientos.length}
+            </span>
+          </div>
+
+          <div className="pago__total">
+            <span className="pago__total-etiqueta">Total</span>
+            <span className="pago__total-valor">{formatearPrecio(state.total)}</span>
+          </div>
+
+          <label className="pago__campo" htmlFor="metodo-pago">
+            Método de pago
+            <select
+              id="metodo-pago"
+              className="pago__select"
+              value={metodoPago}
+              onChange={(evento) => setMetodoPago(evento.target.value)}
+            >
+              <option value="TARJETA">Tarjeta</option>
+              <option value="PSE">PSE</option>
+              <option value="EFECTIVO">Efectivo</option>
+            </select>
+          </label>
+
+          <Boton onClick={confirmar}>Pagar y confirmar reserva</Boton>
+        </div>
+        <BotonPill className="pago__volver" to="/">Cancelar</BotonPill>
       </main>
     </>
   );

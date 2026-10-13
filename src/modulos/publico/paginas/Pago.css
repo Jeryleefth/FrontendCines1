@@ -1,0 +1,104 @@
+.pago__contenedor {
+  padding-top: var(--espacio-chico);
+}
+
+.pago__tarjeta {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--blanco);
+  border: 1px solid var(--crema-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-medio);
+}
+
+.pago__titulo {
+  margin: 0 0 var(--espacio-medio);
+  text-align: center;
+}
+
+.pago__fila {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-medio);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--crema-borde);
+  font-size: 14px;
+}
+
+.pago__fila:last-of-type {
+  border-bottom: none;
+}
+
+.pago__etiqueta {
+  color: var(--gris-texto);
+  font-weight: 600;
+}
+
+.pago__valor {
+  text-align: right;
+  font-weight: 600;
+  color: var(--gris-texto);
+}
+
+.pago__total {
+  margin-top: var(--espacio-chico);
+  padding-top: var(--espacio-medio);
+  border-top: 1px solid var(--crema-borde);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.pago__total-etiqueta {
+  font-weight: 700;
+  color: var(--gris-texto);
+}
+
+.pago__total-valor {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--rojo-principal);
+}
+
+.pago__campo {
+  display: block;
+  margin-top: var(--espacio-grande);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gris-texto);
+}
+
+.pago__select {
+  display: block;
+  width: 100%;
+  margin-top: var(--espacio-chico);
+  padding: 12px 14px;
+  border-radius: var(--radio-boton);
+  border: 1px solid var(--crema-borde);
+  background: var(--crema-fondo);
+  font: inherit;
+  font-weight: 600;
+  color: var(--gris-texto);
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gris-placeholder) 50%),
+    linear-gradient(135deg, var(--gris-placeholder) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.pago__select:focus-visible {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
+}
+
+.pago__tarjeta .boton {
+  width: 100%;
+  margin-top: var(--espacio-grande);
+}
+
+.pago__volver {
+  display: block;
+  margin: var(--espacio-medio) auto 0;
+  text-align: center;
+}
