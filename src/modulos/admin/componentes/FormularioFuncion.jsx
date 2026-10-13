@@ -3,6 +3,7 @@ import Boton from '../../../compartido/componentes/Boton';
 import './FormularioFuncion.css';
 
 const TIPOS_FUNCION = ['Doblada', 'Subtitulada', 'Original'];
+const MINUTOS_PREVIO_FUNCION = 15;
 
 const VALORES_VACIOS = {
   peliculaId: '',
@@ -39,7 +40,7 @@ function aplanar(funcion) {
 function calcularHoraFin(horaInicio, duracion) {
   if (!horaInicio || !Number.isFinite(Number(duracion)) || Number(duracion) <= 0) return '';
   const [horas, minutos] = horaInicio.split(':').map(Number);
-  const totalMinutos = horas * 60 + minutos + Number(duracion);
+  const totalMinutos = horas * 60 + minutos + Number(duracion) + MINUTOS_PREVIO_FUNCION;
   // Las funciones de este proyecto deben terminar el mismo día.
   if (totalMinutos >= 24 * 60) return '';
   return `${String(Math.floor(totalMinutos / 60)).padStart(2, '0')}:${String(totalMinutos % 60).padStart(2, '0')}`;
@@ -184,7 +185,7 @@ export default function FormularioFuncion({ funcionInicial, peliculas, cines, on
           />
           <small>
             {peliculaSeleccionada
-              ? `Se calcula automáticamente con los ${peliculaSeleccionada.duracion} minutos de la película.`
+              ? `Incluye ${peliculaSeleccionada.duracion} min de película + ${MINUTOS_PREVIO_FUNCION} min de anuncios y tráilers.`
               : 'Elige una película y una hora de inicio para calcularla.'}
           </small>
         </div>
