@@ -3,9 +3,9 @@ import { clienteAuthServicio } from '../../../servicios';
 
 const ClienteAuthContexto = createContext(null);
 
-// Clave DISTINTA a la del admin ('cinematch_sesion') a propósito: son dos
-// sesiones independientes. Se puede estar como cliente con reservas hechas
-// Y, en otra pestaña, como administrador — una no reemplaza a la otra.
+// La sesión se guarda en localStorage (no solo en memoria) para que al
+// recargar la página, o volver mañana, el navegador "recuerde" que ya
+// habías iniciado sesión.
 const CLAVE_SESION_CLIENTE = 'cinematch_sesion_cliente';
 
 function leerSesionGuardada() {
@@ -17,9 +17,8 @@ function leerSesionGuardada() {
   }
 }
 
-// Mismo patrón que AuthContext (el de administración): ver ese archivo para
-// la explicación completa de por qué la sesión vive en localStorage y por
-// qué existe el hook `useClienteAuth` en vez de usar useContext directo.
+// El hook `useClienteAuth` (más abajo) existe para que los componentes no
+// tengan que importar el contexto ni usar useContext directamente.
 export function ClienteAuthProvider({ children }) {
   const [cliente, setCliente] = useState(leerSesionGuardada);
 

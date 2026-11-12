@@ -2,7 +2,7 @@ import './Cargando.css';
 
 // Reemplaza el típico "Cargando…" en texto plano por un spinner animado.
 // Se usa en todas las pantallas que esperan datos (cartelera, comparador,
-// asientos, panel de administración) para que la espera se sienta parte
+// asientos, reservas) para que la espera se sienta parte
 // del diseño de la app y no un mensaje de depuración.
 export default function Cargando({ texto = 'Cargando…' }) {
   return (

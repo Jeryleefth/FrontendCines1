@@ -2,12 +2,8 @@ import { useState } from 'react';
 import { IconCandado, IconCorreo, IconOjo, IconOjoCerrado, IconTelefono, IconUsuario } from './iconos';
 import './FormularioPerfil.css';
 
-// Formulario de "editar mis datos", compartido entre el cliente
-// (Perfil.jsx) y el administrador (dentro de PanelAdmin.jsx): las dos
-// pantallas editan lo mismo (nombre y, si quieren, contraseña) de la misma
-// forma, así que viven en un solo componente en vez de duplicar el
-// formulario dos veces. `mostrarTelefono` es la única diferencia real: el
-// cliente tiene teléfono (se pide al registrarse) y el administrador no.
+// Formulario de "editar mis datos" del cliente (Perfil.jsx): nombre,
+// teléfono y, si quiere, contraseña nueva.
 //
 // El correo SIEMPRE llega fijo por prop, nunca editable: es la llave con la
 // que se identifica la cuenta (y, para clientes, con la que
@@ -17,7 +13,6 @@ export default function FormularioPerfil({
   correo,
   nombreInicial,
   telefonoInicial = '',
-  mostrarTelefono = false,
   onGuardar,
 }) {
   const [nombre, setNombre] = useState(nombreInicial);
@@ -71,21 +66,19 @@ export default function FormularioPerfil({
           />
         </label>
 
-        {mostrarTelefono && (
-          <label className="perfil-tarjeta__campo">
-            <span className="perfil-tarjeta__etiqueta">
-              <IconTelefono className="perfil-tarjeta__campo-icono" />
-              Teléfono
-            </span>
-            <input
-              className="perfil-tarjeta__entrada"
-              type="tel"
-              value={telefono}
-              onChange={(evento) => setTelefono(evento.target.value)}
-              required
-            />
-          </label>
-        )}
+        <label className="perfil-tarjeta__campo">
+          <span className="perfil-tarjeta__etiqueta">
+            <IconTelefono className="perfil-tarjeta__campo-icono" />
+            Teléfono
+          </span>
+          <input
+            className="perfil-tarjeta__entrada"
+            type="tel"
+            value={telefono}
+            onChange={(evento) => setTelefono(evento.target.value)}
+            required
+          />
+        </label>
 
         {/* Deshabilitado, no solo de solo-lectura: así ni el teclado ni un
             intento de pegar texto lo tocan, y queda visualmente claro que

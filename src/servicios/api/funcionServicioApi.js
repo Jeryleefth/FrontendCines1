@@ -5,8 +5,5 @@ export const funcionServicioApi = {
   buscarPorId: (id) => clienteHttp.obtener(`/funciones/${id}`),
   listarPorPelicula: (peliculaId) => clienteHttp.obtener(`/peliculas/${peliculaId}/funciones`),
   comparar: (peliculaId) => clienteHttp.obtener(`/peliculas/${peliculaId}/comparador`),
-  crear: (datos) => clienteHttp.crear('/funciones', datos),
-  actualizar: (id, datos) => clienteHttp.actualizar(`/funciones/${id}`, datos),
-  eliminar: (id) => clienteHttp.eliminar(`/funciones/${id}`),
   asientos: (id) => clienteHttp.obtener(`/funciones/${id}/asientos`),
 };

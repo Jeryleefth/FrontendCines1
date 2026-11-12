@@ -20,10 +20,10 @@ export default function Banner({
   const hayImagen = Boolean(imagenFondo) && !imagenFallida;
   // Tres usos de Banner, con reglas distintas para el texto:
   //
-  // 1) Banner "cabecera simple" (PanelAdmin, Cartelera): no pide
+  // 1) Banner "cabecera simple" (Cartelera): no pide
   //    `superponerTexto` ni `forzarTexto`. Si no trae imagen, el título SÍ
   //    se dibuja sobre el degradado liso; si trae una imagen con el título
-  //    ya dibujado adentro (encabezadoPeliculas.png, encabezadoAdmin.png),
+  //    ya dibujado adentro (encabezadoPeliculas.png),
   //    el título NO se repite por encima para no duplicarlo.
   //
   // 2) Banner que pide `superponerTexto` (Comparador, SeleccionAsientos):

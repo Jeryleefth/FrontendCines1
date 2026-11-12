@@ -1,44 +1,27 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../modulos/autenticacion/contexto/AuthContext';
 import { useClienteAuth } from '../../modulos/clientes/contexto/ClienteAuthContext';
 import ConfirmacionModal from './ConfirmacionModal';
 import './Navbar.css';
 
 // COMPONENTE: una función que recibe "props" (sus datos de entrada) y devuelve
-// Aquí la única prop es `enlaces`.
+// JSX. Aquí la única prop es `enlaces`.
 export default function Navbar({ enlaces }) {
-  // `useAuth()` lee el contexto de sesión directamente, en vez de recibirlo
-  // como prop desde Layout -> App: así, "¿hay sesión iniciada?" no tiene que
-  // viajar por cada componente intermedio que no lo necesita para nada más.
-  // Son DOS sesiones independientes (admin y cliente), así que son DOS
-  // hooks distintos — nunca se mezclan en un solo "¿hay alguien logueado?".
-  const { estaAutenticado, cerrarSesion } = useAuth();
-  const { estaAutenticado: clienteAutenticado, cerrarSesion: cerrarSesionCliente } = useClienteAuth();
-  // Si quedara una sesión antigua duplicada, se prioriza el cliente hasta
-  // que App.jsx elimine el estado administrativo obsoleto. Así nunca se
-  // muestra Administración a una persona que está usando su cuenta normal.
-  const sesionClienteActiva = clienteAutenticado;
-  const sesionAdminActiva = estaAutenticado && !sesionClienteActiva;
-
-  // Qué botón de "Cerrar sesión" se está confirmando, no SI hay sesión
-  // iniciada: 'admin' | 'cliente' | null. Las dos sesiones son
-  // independientes (ver comentario de arriba), así que un solo booleano no
-  // alcanzaría para saber cuál de las dos hay que cerrar al confirmar.
-  const [confirmandoSalida, setConfirmandoSalida] = useState(null);
+  // `useClienteAuth()` lee el contexto de sesión directamente, en vez de
+  // recibirlo como prop desde Layout -> App: así, "¿hay sesión iniciada?" no
+  // tiene que viajar por cada componente intermedio que no lo necesita.
+  const { estaAutenticado, cerrarSesion } = useClienteAuth();
+  const [confirmandoSalida, setConfirmandoSalida] = useState(false);
 
   const confirmarSalida = () => {
-    if (confirmandoSalida === 'admin') cerrarSesion();
-    else if (confirmandoSalida === 'cliente') cerrarSesionCliente();
-    setConfirmandoSalida(null);
+    cerrarSesion();
+    setConfirmandoSalida(false);
   };
 
   // No se navega "a mano" después de cerrar sesión: si la persona estaba en
-  // /admin, RutaProtegida ya se encarga de mandarla a /ingresar apenas
-  // `estaAutenticado` se vuelve falso (ver RutaProtegida.jsx) — así no hay
-  // dos redirecciones compitiendo por quién decide la URL final. Si estaba
-  // en una página pública (cartelera, comparador…), no hace falta moverla
-  // de ahí: solo desaparece el botón "Cerrar sesión" del menú.
+  // una página protegida (/mis-reservas, /perfil), RutaProtegidaCliente la
+  // manda a /ingresar apenas `estaAutenticado` se vuelve falso. Si estaba en
+  // una página pública, se queda ahí y solo cambian los enlaces del menú.
   return (
     <header className="navbar">
       <div className="navbar__contenido">
@@ -68,39 +51,8 @@ export default function Navbar({ enlaces }) {
                 </NavLink>
               </li>
             ))}
-            {/* "Administración" ya no es un enlace fijo del menú (ver
-                navegacion.js): solo aparece cuando ya hay sesión de admin,
-                como la puerta de vuelta al panel — a esa sesión se llega
-                iniciando sesión con credenciales de admin en /ingresar, no
-                eligiendo una opción "entrar como admin". */}
-            {sesionAdminActiva && (
-              <>
-                <li>
-                  <NavLink
-                    to="/admin"
-                    className={({ isActive }) =>
-                      isActive ? 'navbar__enlace navbar__enlace--activo' : 'navbar__enlace'
-                    }
-                  >
-                    Administración
-                  </NavLink>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="navbar__enlace navbar__salir"
-                    onClick={() => setConfirmandoSalida('admin')}
-                  >
-                    Cerrar sesión
-                  </button>
-                </li>
-              </>
-            )}
-
-            {/* Enlaces de CLIENTE: "Mis reservas" + "Cerrar sesión" cuando
-                hay sesión de cliente. Es independiente de la sesión de
-                admin de arriba — las dos pueden coexistir. */}
-            {sesionClienteActiva && (
+            {/* Con sesión: "Mis reservas", "Mi perfil" y "Cerrar sesión". */}
+            {estaAutenticado && (
               <>
                 <li>
                   <NavLink
@@ -126,7 +78,7 @@ export default function Navbar({ enlaces }) {
                   <button
                     type="button"
                     className="navbar__enlace navbar__salir"
-                    onClick={() => setConfirmandoSalida('cliente')}
+                    onClick={() => setConfirmandoSalida(true)}
                   >
                     Cerrar sesión
                   </button>
@@ -134,11 +86,8 @@ export default function Navbar({ enlaces }) {
               </>
             )}
 
-            {/* "Login" es la ÚNICA puerta de entrada, para cualquiera de
-                los dos roles: solo se muestra si no hay NINGUNA sesión
-                iniciada todavía (ver Acceso.jsx para cómo decide el rol a
-                partir de las credenciales). */}
-            {!sesionAdminActiva && !sesionClienteActiva && (
+            {/* "Login" solo se muestra si todavía no hay sesión iniciada. */}
+            {!estaAutenticado && (
               <li>
                 <NavLink
                   to="/ingresar"
@@ -160,7 +109,7 @@ export default function Navbar({ enlaces }) {
           mensaje="¿Seguro que quieres cerrar sesión?"
           textoConfirmar="Cerrar sesión"
           onConfirmar={confirmarSalida}
-          onCancelar={() => setConfirmandoSalida(null)}
+          onCancelar={() => setConfirmandoSalida(false)}
         />
       )}
     </header>

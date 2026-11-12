@@ -6,7 +6,4 @@ import { clienteHttp } from '../clienteHttp';
 export const peliculaServicioApi = {
   listar: () => clienteHttp.obtener('/peliculas'),
   buscarPorId: (id) => clienteHttp.obtener(`/peliculas/${id}`),
-  crear: (datos) => clienteHttp.crear('/peliculas', datos),
-  actualizar: (id, datos) => clienteHttp.actualizar(`/peliculas/${id}`, datos),
-  eliminar: (id) => clienteHttp.eliminar(`/peliculas/${id}`),
 };

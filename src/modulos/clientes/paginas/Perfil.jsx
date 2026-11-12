@@ -3,10 +3,8 @@ import FormularioPerfil from '../../../compartido/componentes/FormularioPerfil';
 import { useClienteAuth } from '../contexto/ClienteAuthContext';
 
 // El formulario en sí (nombre, teléfono, correo fijo, contraseña) vive en
-// FormularioPerfil — un componente compartido con la pestaña "Mi perfil"
-// del panel de administración (ver PanelAdmin.jsx), porque las dos
-// pantallas editan lo mismo de la misma forma. Esta página solo le pasa los
-// datos de la sesión de CLIENTE y qué hacer al guardar.
+// FormularioPerfil. Esta página solo le pasa los datos de la sesión del
+// cliente y qué hacer al guardar.
 export default function Perfil() {
   const { cliente, actualizarPerfil } = useClienteAuth();
 
@@ -32,7 +30,6 @@ export default function Perfil() {
           correo={cliente.correo}
           nombreInicial={cliente.nombre}
           telefonoInicial={cliente.telefono}
-          mostrarTelefono
           onGuardar={actualizarPerfil}
         />
       </div>

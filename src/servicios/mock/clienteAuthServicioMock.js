@@ -3,8 +3,7 @@ import { simularLatencia } from './utilidades';
 // A diferencia de peliculas.json o cines.json, acá NO hay datos "semilla":
 // los clientes se registran durante la sesión del navegador, así que el
 // arreglo empieza vacío. Al recargar la página se pierden (no hay base de
-// datos en la Entrega 1) — lo mismo que ya pasa con las películas o cines
-// que se crean desde el panel de administración.
+// datos en la Entrega 1).
 const clientesRegistrados = [];
 
 export const clienteAuthServicioMock = {
