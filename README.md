@@ -1,5 +1,11 @@
-# CineMatch — Frontend 
+# CineMatch — Portal de clientes
 React + Vite + React Router.
+
+Portal público de CineMatch: cartelera, comparador de tarifas y horarios,
+selección de asientos, pago y reservas del cliente. El **panel de
+administración** (CRUD de películas, cines y funciones) esta en otro
+repositorio: [FrontdCinesAdmin](https://github.com/Jeryleefth/FrontdCinesAdmin),
+hecho en Angular.
 
 ## Ejecutar
 
@@ -23,11 +29,13 @@ src/
 │  ├─ componentes/           Navbar, Layout, Banner, Boton
 │  └─ utilidades/            formato.js (precios en COP, fechas)
 ├─ modulos/
-│  ├─ publico/               Portal de clientes (cartelera, comparador, reservas)
+│  ├─ publico/               Cartelera, comparador, selección de asientos y pago
 │  │  ├─ paginas/
-│  │  └─ componentes/        TarjetaPelicula, DetallePeliculaModal
-│  └─ admin/                 Panel de administración (CRUD)
-│     └─ paginas/
+│  │  └─ componentes/        TarjetaPelicula, DetallePeliculaModal, MapaAsientos…
+│  └─ clientes/              Cuenta del cliente: acceso, perfil y mis reservas
+│     ├─ contexto/           ClienteAuthContext (sesión)
+│     ├─ componentes/        RutaProtegidaCliente
+│     └─ paginas/            Acceso, Perfil, MisReservas
 ├─ servicios/                Capa de acceso a datos
 │  ├─ index.js               Los componentes importan SOLO desde aquí
 │  ├─ config.js              Interruptor mock / API real
@@ -54,6 +62,12 @@ Las variables que comienzan por VITE_ son accesibles desde el código del navega
 
 Después de modificar las variables, reinicia el servidor de desarrollo.
 
+## Cuentas
+
+Aquí solo inician sesión **clientes** (`POST /api/clientes/login`) y cualquiera
+puede crear una cuenta. Las cuentas de administrador no entran a este portal:
+usan el panel de administración (Angular, puerto 4200).
+
 ## Conexión con el backend
 
 La comunicación con Spring Boot se centraliza en la carpeta src/servicios/.
@@ -71,3 +85,15 @@ Los componentes de React no deben realizar solicitudes HTTP directamente ni depe
 El frontend consume Spring Boot en `http://127.0.0.1:8081/api`. Al confirmar una reserva, Spring solicita el cobro al microservicio Django y Django confirma el resultado mediante un webhook. El navegador no llama a Django directamente.
 
 Los precios, horarios y direcciones de `src/mocks` son ilustrativos.
+
+El portal solo **lee** el catálogo (películas, cines, funciones); crear,
+editar y eliminar contenido se hace desde el panel de administración.
+
+## Puertos en desarrollo
+
+| Aplicación | Puerto |
+| --- | --- |
+| Portal de clientes (este repo) | 5173 |
+| Panel de administración (Angular) | 4200 |
+| Core API (Spring Boot) | 8081 |
+| Microservicio de pagos (Django) | 8000 |
