@@ -12,9 +12,6 @@ export default function Navbar({ enlaces }) {
   // tiene que viajar por cada componente intermedio que no lo necesita.
   const { estaAutenticado, cerrarSesion } = useClienteAuth();
   const [confirmandoSalida, setConfirmandoSalida] = useState(false);
-  // Conserva el host actual: en desarrollo puede ser localhost y por Wi-Fi
-  // puede ser una IP local. El panel administrativo vive en el puerto 4200.
-  const urlPanelAdministracion = `${window.location.protocol}//${window.location.hostname}:4200/ingresar`;
 
   const confirmarSalida = () => {
     cerrarSesion();
@@ -54,11 +51,6 @@ export default function Navbar({ enlaces }) {
                 </NavLink>
               </li>
             ))}
-            <li>
-              <a className="navbar__enlace" href={urlPanelAdministracion}>
-                Administración
-              </a>
-            </li>
             {/* Con sesión: "Mis reservas", "Mi perfil" y "Cerrar sesión". */}
             {estaAutenticado && (
               <>

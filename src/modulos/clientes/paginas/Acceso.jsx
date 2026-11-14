@@ -31,6 +31,9 @@ export default function Acceso() {
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [error, setError] = useState(null);
   const [enviando, setEnviando] = useState(false);
+  // El panel admin es otra aplicación. Se usa el host actual para que esto
+  // funcione igual en localhost y cuando se abre desde la red Wi-Fi.
+  const urlPanelAdministracion = `${window.location.protocol}//${window.location.hostname}:4200/ingresar`;
 
   const cambiarModo = (nuevoModo) => {
     setModo(nuevoModo);
@@ -60,6 +63,13 @@ export default function Acceso() {
       // RutaProtegidaCliente la mandara aquí; si no hay, va a sus reservas.
       navegar(desde ?? '/mis-reservas', { replace: true });
     } catch (e) {
+      // La API reconoce que las credenciales son correctas, pero que
+      // pertenecen a un administrador. En vez de mostrar un error confuso en
+      // el portal de clientes, se lleva a esa persona a su interfaz propia.
+      if (modo === 'ingresar' && e.message === 'No tienes permisos para iniciar sesión en este módulo.') {
+        window.location.assign(urlPanelAdministracion);
+        return;
+      }
       setError(e.message);
     } finally {
       setEnviando(false);

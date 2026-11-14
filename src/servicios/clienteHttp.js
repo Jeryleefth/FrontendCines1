@@ -1,12 +1,26 @@
 import { URL_API } from './config';
 
+const CLAVE_SESION_CLIENTE = 'cinematch_sesion_cliente';
+
+function tokenDeSesion() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE_SESION_CLIENTE))?.token ?? null;
+  } catch {
+    return null;
+  }
+}
+
 // Pequeño envoltorio sobre fetch. Todos los servicios "api" pasan por aquí,
-// así el manejo de errores, cabeceras y (más adelante) el token JWT
-// se configuran en un solo lugar.
+// así el manejo de errores y el JWT se configuran en un solo lugar.
 async function solicitar(ruta, opciones = {}) {
+  const token = tokenDeSesion();
   const respuesta = await fetch(`${URL_API}${ruta}`, {
-    headers: { 'Content-Type': 'application/json', ...opciones.headers },
     ...opciones,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...opciones.headers,
+    },
   });
 
   if (!respuesta.ok) {
