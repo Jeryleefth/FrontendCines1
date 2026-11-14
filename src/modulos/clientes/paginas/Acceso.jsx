@@ -70,15 +70,16 @@ export default function Acceso() {
       // el portal de clientes, se abre el panel ya autenticado.
       if (modo === 'ingresar' && e.message === 'No tienes permisos para iniciar sesión en este módulo.') {
         try {
-          // Los dos puertos tienen su propio localStorage. window.name permite
-          // entregar la sesión al mismo navegador sin exponer el JWT en la URL.
-          // El panel la consume, la guarda en su propio almacenamiento y limpia
-          // window.name apenas carga.
+          // Los dos puertos tienen su propio localStorage. El fragmento (#)
+          // nunca viaja al servidor: el panel lo consume, guarda la sesión en
+          // su propio almacenamiento y limpia la dirección apenas carga.
           const sesionAdmin = USAR_MOCKS
             ? null
             : await authServicioApi.login(valores.identificador, valores.contrasena);
           if (sesionAdmin) {
-            window.name = JSON.stringify({ tipo: 'cinematch-admin-session', sesion: sesionAdmin });
+            const transferencia = encodeURIComponent(JSON.stringify(sesionAdmin));
+            window.location.assign(`${urlPanelAdministracion}#sesion=${transferencia}`);
+            return;
           }
           window.location.assign(urlPanelAdministracion);
         } catch {
