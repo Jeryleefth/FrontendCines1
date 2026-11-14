@@ -9,6 +9,8 @@ import {
   IconUsuario,
 } from '../../../compartido/componentes/iconos';
 import { useClienteAuth } from '../contexto/ClienteAuthContext';
+import { authServicioApi } from '../../../servicios/api/authServicioApi';
+import { USAR_MOCKS } from '../../../servicios/config';
 import './Acceso.css';
 
 const VALORES_VACIOS = { identificador: '', nombre: '', correo: '', telefono: '', contrasena: '' };
@@ -65,9 +67,23 @@ export default function Acceso() {
     } catch (e) {
       // La API reconoce que las credenciales son correctas, pero que
       // pertenecen a un administrador. En vez de mostrar un error confuso en
-      // el portal de clientes, se lleva a esa persona a su interfaz propia.
+      // el portal de clientes, se abre el panel ya autenticado.
       if (modo === 'ingresar' && e.message === 'No tienes permisos para iniciar sesión en este módulo.') {
-        window.location.assign(urlPanelAdministracion);
+        try {
+          // Los dos puertos tienen su propio localStorage. window.name permite
+          // entregar la sesión al mismo navegador sin exponer el JWT en la URL.
+          // El panel la consume, la guarda en su propio almacenamiento y limpia
+          // window.name apenas carga.
+          const sesionAdmin = USAR_MOCKS
+            ? null
+            : await authServicioApi.login(valores.identificador, valores.contrasena);
+          if (sesionAdmin) {
+            window.name = JSON.stringify({ tipo: 'cinematch-admin-session', sesion: sesionAdmin });
+          }
+          window.location.assign(urlPanelAdministracion);
+        } catch {
+          setError('No se pudo abrir el panel de administración. Inténtalo de nuevo.');
+        }
         return;
       }
       setError(e.message);
